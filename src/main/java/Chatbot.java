@@ -22,13 +22,13 @@ public class Chatbot {
 
     public void mark(int idx) {
         // TODO: Handle invalid idx
-        Task task = this.taskList.get(idx+1);
+        Task task = this.taskList.get(idx-1);
         task.markDone();
         System.out.println("I've marked the following task as done:\n" + task + "\n");
     }
 
     public void unmark(int idx) {
-        Task task = this.taskList.get(idx+1);
+        Task task = this.taskList.get(idx-1);
         task.unmarkDone();
         System.out.println("I've marked the following task as not done:\n" + task + "\n");
     }
