@@ -20,6 +20,19 @@ public class Chatbot {
         System.out.println(this.taskList);
     }
 
+    public void mark(int idx) {
+        // TODO: Handle invalid idx
+        Task task = this.taskList.get(idx+1);
+        task.markDone();
+        System.out.println("I've marked the following task as done:\n" + task + "\n");
+    }
+
+    public void unmark(int idx) {
+        Task task = this.taskList.get(idx+1);
+        task.unmarkDone();
+        System.out.println("I've marked the following task as not done:\n" + task + "\n");
+    }
+
     public void bye() {
         System.out.println("Bye. Hope to see you again soon!\n");
     }

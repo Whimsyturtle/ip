@@ -11,9 +11,18 @@ public class Turtle {
                 break;
             } else if (userCommand.equals("list")) {
                 bot.list();
-                continue;
+            } else if (userCommand.startsWith("mark")) {
+                // TODO: Handle invalid command syntax
+                String[] sections = userCommand.split(" ");
+                int idx = Integer.parseInt(sections[1]);
+                bot.mark(idx);
+            } else if (userCommand.startsWith("unmark")) {
+                String[] sections = userCommand.split(" ");
+                int idx = Integer.parseInt(sections[1]);
+                bot.unmark(idx);
+            } else {
+                bot.echo(userCommand);
             }
-            bot.echo(userCommand);
         }
         bot.bye();
     }
