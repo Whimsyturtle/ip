@@ -1,3 +1,6 @@
+import tasks.Task;
+import tasks.TaskList;
+
 public class Chatbot {
 
     private final TaskList taskList;
@@ -10,10 +13,13 @@ public class Chatbot {
         System.out.println("Hello! My name is Turtle.\nWhat can I do for you?\n");
     }
 
-    public void echo(String userCommand) {
-        Task newTask = new Task(userCommand);
+    public void error(String msg) {
+        System.out.println("[ERROR] " + msg + "\n");
+    }
+
+    public void addTask(Task newTask) {
         taskList.add(newTask);
-        System.out.println("Added: " + userCommand + "\n");
+        System.out.println("Added: " + newTask + "\n");
     }
 
     public void list() {
