@@ -1,10 +1,14 @@
 public class Turtle {
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        greet();
+        bye();
+    }
+
+    private static void greet() {
+        System.out.println("Hello! My name is Turtle.\nWhat can I do for you?\n");
+    }
+
+    private static void bye() {
+        System.out.println("Bye. Hope to see you again soon!\n");
     }
 }
