@@ -18,6 +18,10 @@ public class TaskList {
         return this.list.get(idx);
     }
 
+    public int size() {
+        return this.list.size();
+    }
+
     @Override
     public String toString() {
         String res = "";

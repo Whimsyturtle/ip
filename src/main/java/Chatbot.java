@@ -27,13 +27,20 @@ public class Chatbot {
     }
 
     public void mark(int idx) {
-        // TODO: Handle invalid idx
+        if (idx < 1 || idx > this.taskList.size()) {
+            this.error("Invalid task index " + idx);
+            return;
+        }
         Task task = this.taskList.get(idx-1);
         task.markDone();
         System.out.println("I've marked the following task as done:\n" + task + "\n");
     }
 
     public void unmark(int idx) {
+        if (idx < 1 || idx > this.taskList.size()) {
+            this.error("Invalid task index " + idx);
+            return;
+        }
         Task task = this.taskList.get(idx-1);
         task.unmarkDone();
         System.out.println("I've marked the following task as not done:\n" + task + "\n");
