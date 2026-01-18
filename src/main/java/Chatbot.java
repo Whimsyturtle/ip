@@ -23,7 +23,7 @@ public class Chatbot {
     }
 
     public void list() {
-        System.out.println(this.taskList);
+        System.out.println("Here are your tasks:\n" + this.taskList);
     }
 
     public void mark(int idx) throws TurtleException {
@@ -42,6 +42,14 @@ public class Chatbot {
         Task task = this.taskList.get(idx-1);
         task.unmarkDone();
         System.out.println("I've marked the following task as not done:\n" + task + "\n");
+    }
+
+    public void delete(int idx) throws TurtleException {
+        if (idx < 1 || idx > this.taskList.size()) {
+            throw new TurtleException("Invalid task index " + idx, "delete <index>");
+        }
+        Task task = this.taskList.remove(idx-1);
+        System.out.println("I've deleted the following task:\n" + task + "\n");
     }
 
     public void bye() {

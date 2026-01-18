@@ -40,6 +40,17 @@ public class Turtle {
                         throw new TurtleException("Unable to parse <index> '" + sections[1] + "'",
                                 "unmark <index>");
                     }
+                } else if (sections[0].equals("delete")) {
+                    if (sections.length != 2) {
+                        throw new TurtleException("Invalid syntax", "delete <index>");
+                    }
+                    try {
+                        int idx = Integer.parseInt(sections[1]);
+                        bot.delete(idx);
+                    } catch (NumberFormatException e) {
+                        throw new TurtleException("Unable to parse <index> '" + sections[1] + "'",
+                                "delete <index>");
+                    }
                 } else if (sections[0].equals("todo")) {
                     if (sections.length == 1) {
                         throw new TurtleException("Invalid syntax", "todo <task_name>");

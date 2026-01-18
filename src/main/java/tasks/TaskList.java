@@ -18,6 +18,10 @@ public class TaskList {
         return this.list.get(idx);
     }
 
+    public Task remove(int idx) {
+        return this.list.remove(idx);
+    }
+
     public int size() {
         return this.list.size();
     }
