@@ -1,7 +1,133 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Hello! My name is Turtle.
+What can I do for you?
+
+[ERROR] TurtleException: Unknown command 'lol'
+Correct Syntax: help
+
+Here are your tasks:
+
+[ERROR] TurtleException: Invalid syntax
+Correct Syntax: todo <task_name>
+
+Added: [T][ ] Task A
+
+Here are your tasks:
+1. [T][ ] Task A
+
+[ERROR] TurtleException: Invalid syntax
+Correct Syntax: mark <index>
+
+[ERROR] TurtleException: Unable to parse <index> 'abc'
+Correct Syntax: mark <index>
+
+[ERROR] TurtleException: Invalid task index 0
+Correct Syntax: mark <index>
+
+[ERROR] TurtleException: Invalid task index 2
+Correct Syntax: mark <index>
+
+I've marked the following task as done:
+[T][X] Task A
+
+Here are your tasks:
+1. [T][X] Task A
+
+[ERROR] TurtleException: Invalid syntax
+Correct Syntax: unmark <index>
+
+[ERROR] TurtleException: Unable to parse <index> 'abc'
+Correct Syntax: unmark <index>
+
+[ERROR] TurtleException: Invalid task index 0
+Correct Syntax: unmark <index>
+
+[ERROR] TurtleException: Invalid task index 2
+Correct Syntax: unmark <index>
+
+I've marked the following task as not done:
+[T][ ] Task A
+
+Here are your tasks:
+1. [T][ ] Task A
+
+[ERROR] TurtleException: Unable to find '/by' section
+Correct Syntax: deadline <task_name> /by <deadline>
+
+[ERROR] TurtleException: Unable to find <task_name>
+Correct Syntax: deadline <task_name> /by <deadline>
+
+[ERROR] TurtleException: Unable to find <deadline>
+Correct Syntax: deadline <task_name> /by <deadline>
+
+Added: [D][ ] Task B (by: Task B's Deadline)
+
+Here are your tasks:
+1. [T][ ] Task A
+2. [D][ ] Task B (by: Task B's Deadline)
+
+I've marked the following task as done:
+[D][X] Task B (by: Task B's Deadline)
+
+Here are your tasks:
+1. [T][ ] Task A
+2. [D][X] Task B (by: Task B's Deadline)
+
+I've marked the following task as not done:
+[D][ ] Task B (by: Task B's Deadline)
+
+Here are your tasks:
+1. [T][ ] Task A
+2. [D][ ] Task B (by: Task B's Deadline)
+
+[ERROR] TurtleException: Unable to find '/from' section
+Correct Syntax: event <task_name> /from <from_datetime> /to <to_datetime>
+
+[ERROR] TurtleException: Unable to find '/to' section
+Correct Syntax: event <task_name> /from <from_datetime> /to <to_datetime>
+
+[ERROR] TurtleException: Unable to find <task_name>
+Correct Syntax: event <task_name> /from <from_datetime> /to <to_datetime>
+
+[ERROR] TurtleException: Expected '/from' before '/to'
+Correct Syntax: event <task_name> /from <from_datetime> /to <to_datetime>
+
+[ERROR] TurtleException: Unable to find <from_datetime>
+Correct Syntax: event <task_name> /from <from_datetime> /to <to_datetime>
+
+[ERROR] TurtleException: Unable to find <to_datetime>
+Correct Syntax: event <task_name> /from <from_datetime> /to <to_datetime>
+
+Added: [E][ ] Task C (from: Task C Start, to: Task C End)
+
+Here are your tasks:
+1. [T][ ] Task A
+2. [D][ ] Task B (by: Task B's Deadline)
+3. [E][ ] Task C (from: Task C Start, to: Task C End)
+
+[ERROR] TurtleException: Invalid syntax
+Correct Syntax: delete <index>
+
+[ERROR] TurtleException: Unable to parse <index> 'abc'
+Correct Syntax: delete <index>
+
+[ERROR] TurtleException: Invalid task index 0
+Correct Syntax: delete <index>
+
+[ERROR] TurtleException: Invalid task index 4
+Correct Syntax: delete <index>
+
+I've deleted the following task:
+[D][ ] Task B (by: Task B's Deadline)
+
+Here are your tasks:
+1. [T][ ] Task A
+2. [E][ ] Task C (from: Task C Start, to: Task C End)
+
+I've deleted the following task:
+[T][ ] Task A
+
+Here are your tasks:
+1. [E][ ] Task C (from: Task C Start, to: Task C End)
+
+Bye. Hope to see you again soon!
 

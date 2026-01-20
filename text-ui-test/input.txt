@@ -1,0 +1,43 @@
+lol invalid cmd
+list
+todo
+todo Task A
+list
+mark
+mark abc
+mark 0
+mark 2
+mark 1
+list
+unmark
+unmark abc
+unmark 0
+unmark 2
+unmark 1
+list
+deadline
+deadline /by
+deadline Task B /by
+deadline Task B /by Task B's Deadline
+list
+mark 2
+list
+unmark 2
+list
+event
+event /from
+event /from /to
+event /to /from
+event Task C /from /to
+event Task C /from Task C Start /to
+event Task C /from Task C Start /to Task C End
+list
+delete
+delete abc
+delete 0
+delete 4
+delete 2
+list
+delete 1
+list
+bye
