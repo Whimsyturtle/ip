@@ -5,6 +5,8 @@ import tasks.TodoTask;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -16,6 +18,7 @@ public class Turtle {
         Scanner scanner = new Scanner(System.in);
         Chatbot bot = null;
         try {
+            // TODO: Don't load chatbot from file for text-ui-test
             bot = Chatbot.loadChatbotFromFile(STORED_CHATBOT_FILEPATH);
         } catch (IOException e) {
             System.out.println("Unable to load chatbot data!");
@@ -89,7 +92,14 @@ public class Turtle {
                             Arrays.copyOfRange(sections, 1, bySectionIdx));
                     String taskDeadline = String.join(" ",
                             Arrays.copyOfRange(sections, bySectionIdx+1, sections.length));
-                    DeadlineTask task = new DeadlineTask(taskName, taskDeadline);
+                    LocalDate parsedTaskDeadline = null;
+                    try {
+                        parsedTaskDeadline = LocalDate.parse(taskDeadline);
+                    } catch (DateTimeParseException e) {
+                        throw new TurtleException("Unable to parse <deadline> '" + taskDeadline + "'",
+                                "deadline <task_name> /by <deadline>");
+                    }
+                    DeadlineTask task = new DeadlineTask(taskName, parsedTaskDeadline);
                     bot.addTask(task);
                 } else if (sections[0].equals("event")) {
                     int fromSectionIdx = Arrays.asList(sections).indexOf("/from");
@@ -124,7 +134,21 @@ public class Turtle {
                             Arrays.copyOfRange(sections, fromSectionIdx+1, toSectionIdx));
                     String taskToDateTime = String.join(" ",
                             Arrays.copyOfRange(sections, toSectionIdx+1, sections.length));
-                    EventTask task = new EventTask(taskName, taskFromDateTime, taskToDateTime);
+                    LocalDate parsedTaskFromDateTime = null;
+                    try {
+                        parsedTaskFromDateTime = LocalDate.parse(taskFromDateTime);
+                    } catch (DateTimeParseException e) {
+                        throw new TurtleException("Unable to parse <from_datetime> '" + taskFromDateTime + "'",
+                                "event <task_name> /from <from_datetime> /to <to_datetime>");
+                    }
+                    LocalDate parsedTaskToDateTime = null;
+                    try {
+                        parsedTaskToDateTime = LocalDate.parse(taskToDateTime);
+                    } catch (DateTimeParseException e) {
+                        throw new TurtleException("Unable to parse <to_datetime> '" + taskToDateTime + "'",
+                                "event <task_name> /from <from_datetime> /to <to_datetime>");
+                    }
+                    EventTask task = new EventTask(taskName, parsedTaskFromDateTime, parsedTaskToDateTime);
                     bot.addTask(task);
                 } else {
                     throw new TurtleException("Unknown command '" + sections[0] + "'", "help");
