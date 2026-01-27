@@ -1,5 +1,12 @@
 import tasks.Task;
+import tasks.TaskFactory;
 import tasks.TaskList;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Scanner;
 
 public class Chatbot {
 
@@ -54,6 +61,30 @@ public class Chatbot {
 
     public void bye() {
         System.out.println("Bye. Hope to see you again soon!\n");
+    }
+
+    public void saveChatbotToFile(Path path) throws IOException {
+        FileWriter fw = new FileWriter(path.toFile());
+        for (int i = 0; i < this.taskList.size(); i++) {
+            fw.write(this.taskList.get(i).serialize() + "\n");
+        }
+        fw.close();
+    }
+
+    public static Chatbot loadChatbotFromFile(Path path) throws IOException {
+        // Create parent folders & file if they don't exist yet
+        Files.createDirectories(path.getParent());
+        if (Files.notExists(path)) {
+            Files.createFile(path);
+        }
+
+        // Read and parse file accordingly
+        Chatbot bot = new Chatbot();
+        Scanner scanner = new Scanner(path);
+        while (scanner.hasNext()) {
+            bot.addTask(TaskFactory.deserialize(scanner.nextLine()));
+        }
+        return bot;
     }
 
 }

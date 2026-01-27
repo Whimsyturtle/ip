@@ -2,13 +2,25 @@ import tasks.DeadlineTask;
 import tasks.EventTask;
 import tasks.TodoTask;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Turtle {
+
+    private static final Path STORED_CHATBOT_FILEPATH = Paths.get("./data/turtle.txt");
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Chatbot bot = new Chatbot();
+        Chatbot bot = null;
+        try {
+            bot = Chatbot.loadChatbotFromFile(STORED_CHATBOT_FILEPATH);
+        } catch (IOException e) {
+            System.out.println("Unable to load chatbot data!");
+            return;
+        }
         bot.greet();
         while (true) {
             String userCommand = scanner.nextLine();
@@ -116,6 +128,13 @@ public class Turtle {
                     bot.addTask(task);
                 } else {
                     throw new TurtleException("Unknown command '" + sections[0] + "'", "help");
+                }
+                try {
+                    bot.saveChatbotToFile(STORED_CHATBOT_FILEPATH);
+                } catch (IOException e) {
+                    // TODO: More graceful handling
+                    System.out.println("Unable to save chatbot data!");
+                    return;
                 }
             } catch (TurtleException e) {
                 bot.error(e.toString());
