@@ -1,3 +1,4 @@
+import exceptions.CommandTurtleException;
 import tasks.Task;
 import tasks.TaskFactory;
 import tasks.TaskList;
@@ -33,27 +34,27 @@ public class Chatbot {
         System.out.println("Here are your tasks:\n" + this.taskList);
     }
 
-    public void mark(int idx) throws TurtleException {
+    public void mark(int idx) throws CommandTurtleException {
         if (idx < 1 || idx > this.taskList.size()) {
-            throw new TurtleException("Invalid task index " + idx, "mark <index>");
+            throw new CommandTurtleException("Invalid task index " + idx, "mark <index>");
         }
         Task task = this.taskList.get(idx-1);
         task.markDone();
         System.out.println("I've marked the following task as done:\n" + task + "\n");
     }
 
-    public void unmark(int idx) throws TurtleException {
+    public void unmark(int idx) throws CommandTurtleException {
         if (idx < 1 || idx > this.taskList.size()) {
-            throw new TurtleException("Invalid task index " + idx, "unmark <index>");
+            throw new CommandTurtleException("Invalid task index " + idx, "unmark <index>");
         }
         Task task = this.taskList.get(idx-1);
         task.unmarkDone();
         System.out.println("I've marked the following task as not done:\n" + task + "\n");
     }
 
-    public void delete(int idx) throws TurtleException {
+    public void delete(int idx) throws CommandTurtleException {
         if (idx < 1 || idx > this.taskList.size()) {
-            throw new TurtleException("Invalid task index " + idx, "delete <index>");
+            throw new CommandTurtleException("Invalid task index " + idx, "delete <index>");
         }
         Task task = this.taskList.remove(idx-1);
         System.out.println("I've deleted the following task:\n" + task + "\n");
