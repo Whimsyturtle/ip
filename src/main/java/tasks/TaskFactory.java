@@ -1,5 +1,7 @@
 package tasks;
 
+import java.time.LocalDate;
+
 public class TaskFactory {
 
     public static Task deserialize(String serializedStr) {
@@ -105,7 +107,9 @@ public class TaskFactory {
         if (deadline == null) {
             throw new IllegalStateException("Unable to deserialize DeadlineTask: missing deadline");
         }
-        return new DeadlineTask(name, isDone, deadline);
+        // TODO: Custom error message for LocalDate.parse()?
+        LocalDate parsedDeadline = LocalDate.parse(deadline);
+        return new DeadlineTask(name, isDone, parsedDeadline);
     }
 
     private static EventTask deserializeEventTask(String[] parts) {
@@ -144,7 +148,10 @@ public class TaskFactory {
         if (toDateTime == null) {
             throw new IllegalStateException("Unable to deserialize EventTask: missing toDateTime");
         }
-        return new EventTask(name, isDone, fromDateTime, toDateTime);
+        // TODO: Custom error message for LocalDate.parse()?
+        LocalDate parsedFromDateTime = LocalDate.parse(fromDateTime);
+        LocalDate parsedToDateTime = LocalDate.parse(toDateTime);
+        return new EventTask(name, isDone, parsedFromDateTime, parsedToDateTime);
     }
 
 }
