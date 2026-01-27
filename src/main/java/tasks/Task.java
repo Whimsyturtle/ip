@@ -6,8 +6,12 @@ public class Task {
     protected boolean isDone;
 
     public Task(String name) {
+        this(name, false);
+    }
+
+    public Task(String name, boolean isDone) {
         this.name = name;
-        this.isDone = false;
+        this.isDone = isDone;
     }
 
     public void markDone() {
@@ -25,6 +29,10 @@ public class Task {
     @Override
     public String toString() {
         return this.getDoneStatusString() + " " + this.name;
+    }
+
+    public String serialize() {
+        return "base|name=" + this.name + "|isDone=" + this.isDone;
     }
 
 }
