@@ -79,7 +79,7 @@ public class TaskFactory {
         String name = null;
         Boolean isDone = null;
         String deadline = null;
-        for (int i = 0; i < parts.length; i++) {
+        for (int i = 1; i < parts.length; i++) {
             String[] kvPair = parts[i].split("=");
             if (kvPair.length != 2) {
                 throw new IllegalStateException("Unable to deserialize DeadlineTask: invalid kvPair " + parts[i]);
@@ -113,7 +113,7 @@ public class TaskFactory {
         Boolean isDone = null;
         String fromDateTime = null;
         String toDateTime = null;
-        for (int i = 0; i < parts.length; i++) {
+        for (int i = 1; i < parts.length; i++) {
             String[] kvPair = parts[i].split("=");
             if (kvPair.length != 2) {
                 throw new IllegalStateException("Unable to deserialize EventTask: invalid kvPair " + parts[i]);
