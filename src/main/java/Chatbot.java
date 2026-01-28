@@ -1,39 +1,38 @@
+import exceptions.ByeTurtleException;
 import exceptions.CommandTurtleException;
+import exceptions.TurtleException;
 import tasks.Task;
-import tasks.TaskFactory;
 import tasks.TaskList;
 
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Scanner;
 
 public class Chatbot {
 
-    private final TaskList taskList;
     private final Ui ui;
+    private final Storage storage;
+    private final TaskList taskList;
 
-    public Chatbot() {
-        this.taskList = new TaskList();
-        this.ui = new Ui(System.out);
-    }
-
-    public void greet() {
-        ui.greet();
-    }
-
-    public void error(String msg) {
-        ui.error(msg);
+    public Chatbot(Path storagePath) {
+        this.ui = new Ui(System.out, System.in);
+        this.storage = new Storage(storagePath);
+        TaskList tmpTaskList = null;
+        try {
+            tmpTaskList = this.storage.loadTasksFromFile();
+        } catch (IOException e) {
+            this.ui.error("Unable to load chatbot data! Defaulting to empty task list...");
+            tmpTaskList = new TaskList();
+        }
+        this.taskList = tmpTaskList;
     }
 
     public void addTask(Task newTask) {
-        taskList.add(newTask);
-        ui.addTask(newTask);
+        this.taskList.add(newTask);
+        this.ui.addTask(newTask);
     }
 
     public void list() {
-        ui.list(taskList);
+        this.ui.list(this.taskList);
     }
 
     public void mark(int idx) throws CommandTurtleException {
@@ -42,7 +41,7 @@ public class Chatbot {
         }
         Task task = this.taskList.get(idx-1);
         task.markDone();
-        ui.mark(task);
+        this.ui.mark(task);
     }
 
     public void unmark(int idx) throws CommandTurtleException {
@@ -51,7 +50,7 @@ public class Chatbot {
         }
         Task task = this.taskList.get(idx-1);
         task.unmarkDone();
-        ui.unmark(task);
+        this.ui.unmark(task);
     }
 
     public void delete(int idx) throws CommandTurtleException {
@@ -59,35 +58,30 @@ public class Chatbot {
             throw new CommandTurtleException("Invalid task index " + idx, "delete <index>");
         }
         Task task = this.taskList.remove(idx-1);
-        ui.delete(task);
+        this.ui.delete(task);
     }
 
-    public void bye() {
-        ui.bye();
-    }
-
-    public void saveChatbotToFile(Path path) throws IOException {
-        FileWriter fw = new FileWriter(path.toFile());
-        for (int i = 0; i < this.taskList.size(); i++) {
-            fw.write(this.taskList.get(i).serialize() + "\n");
+    public void run() {
+        Parser parser = new Parser(this);
+        this.ui.greet();
+        while (true) {
+            String userCommand = this.ui.getCommand();
+            try {
+                parser.parseCommand(userCommand);
+                try {
+                    this.storage.saveTasksToFile(this.taskList);
+                } catch (IOException e) {
+                    // TODO: More graceful handling
+                    this.ui.error("Unable to save chatbot data!");
+                    break;
+                }
+            } catch (ByeTurtleException e) {
+                break;
+            } catch (TurtleException e) {
+                this.ui.error(e.toString());
+            }
         }
-        fw.close();
-    }
-
-    public static Chatbot loadChatbotFromFile(Path path) throws IOException {
-        // Create parent folders & file if they don't exist yet
-        Files.createDirectories(path.getParent());
-        if (Files.notExists(path)) {
-            Files.createFile(path);
-        }
-
-        // Read and parse file accordingly
-        Chatbot bot = new Chatbot();
-        Scanner scanner = new Scanner(path);
-        while (scanner.hasNext()) {
-            bot.addTask(TaskFactory.deserialize(scanner.nextLine()));
-        }
-        return bot;
+        this.ui.bye();
     }
 
 }

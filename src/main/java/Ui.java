@@ -1,14 +1,22 @@
 import tasks.Task;
 import tasks.TaskList;
 
+import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 public class Ui {
 
     private final PrintStream printStream;
+    private final Scanner scanner;
 
-    public Ui(PrintStream printStream) {
+    public Ui(PrintStream printStream, InputStream inputStream) {
         this.printStream = printStream;
+        this.scanner = new Scanner(inputStream);
+    }
+
+    public String getCommand() {
+        return this.scanner.nextLine();
     }
 
     public void greet() {
