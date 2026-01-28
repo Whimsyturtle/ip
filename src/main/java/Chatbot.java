@@ -12,26 +12,28 @@ import java.util.Scanner;
 public class Chatbot {
 
     private final TaskList taskList;
+    private final Ui ui;
 
     public Chatbot() {
         this.taskList = new TaskList();
+        this.ui = new Ui(System.out);
     }
 
     public void greet() {
-        System.out.println("Hello! My name is Turtle.\nWhat can I do for you?\n");
+        ui.greet();
     }
 
     public void error(String msg) {
-        System.out.println("[ERROR] " + msg + "\n");
+        ui.error(msg);
     }
 
     public void addTask(Task newTask) {
         taskList.add(newTask);
-        System.out.println("Added: " + newTask + "\n");
+        ui.addTask(newTask);
     }
 
     public void list() {
-        System.out.println("Here are your tasks:\n" + this.taskList);
+        ui.list(taskList);
     }
 
     public void mark(int idx) throws CommandTurtleException {
@@ -40,7 +42,7 @@ public class Chatbot {
         }
         Task task = this.taskList.get(idx-1);
         task.markDone();
-        System.out.println("I've marked the following task as done:\n" + task + "\n");
+        ui.mark(task);
     }
 
     public void unmark(int idx) throws CommandTurtleException {
@@ -49,7 +51,7 @@ public class Chatbot {
         }
         Task task = this.taskList.get(idx-1);
         task.unmarkDone();
-        System.out.println("I've marked the following task as not done:\n" + task + "\n");
+        ui.unmark(task);
     }
 
     public void delete(int idx) throws CommandTurtleException {
@@ -57,11 +59,11 @@ public class Chatbot {
             throw new CommandTurtleException("Invalid task index " + idx, "delete <index>");
         }
         Task task = this.taskList.remove(idx-1);
-        System.out.println("I've deleted the following task:\n" + task + "\n");
+        ui.delete(task);
     }
 
     public void bye() {
-        System.out.println("Bye. Hope to see you again soon!\n");
+        ui.bye();
     }
 
     public void saveChatbotToFile(Path path) throws IOException {
