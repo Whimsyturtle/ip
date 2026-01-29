@@ -1,12 +1,12 @@
 Hello! My name is Turtle.
 What can I do for you?
 
-[ERROR] exceptions.CommandTurtleException: Unknown command 'lol'
+[ERROR] turtle.exceptions.CommandTurtleException: Unknown command 'lol'
 Correct Syntax: help
 
 Here are your tasks:
 
-[ERROR] exceptions.CommandTurtleException: Invalid syntax
+[ERROR] turtle.exceptions.CommandTurtleException: Invalid syntax
 Correct Syntax: todo <task_name>
 
 Added: [T][ ] Task A
@@ -14,16 +14,16 @@ Added: [T][ ] Task A
 Here are your tasks:
 1. [T][ ] Task A
 
-[ERROR] exceptions.CommandTurtleException: Invalid syntax
+[ERROR] turtle.exceptions.CommandTurtleException: Invalid syntax
 Correct Syntax: mark <index>
 
-[ERROR] exceptions.CommandTurtleException: Unable to parse <index> 'abc'
+[ERROR] turtle.exceptions.CommandTurtleException: Unable to parse <index> 'abc'
 Correct Syntax: mark <index>
 
-[ERROR] exceptions.CommandTurtleException: Invalid task index 0
+[ERROR] turtle.exceptions.CommandTurtleException: Invalid task index 0
 Correct Syntax: mark <index>
 
-[ERROR] exceptions.CommandTurtleException: Invalid task index 2
+[ERROR] turtle.exceptions.CommandTurtleException: Invalid task index 2
 Correct Syntax: mark <index>
 
 I've marked the following task as done:
@@ -32,16 +32,16 @@ I've marked the following task as done:
 Here are your tasks:
 1. [T][X] Task A
 
-[ERROR] exceptions.CommandTurtleException: Invalid syntax
+[ERROR] turtle.exceptions.CommandTurtleException: Invalid syntax
 Correct Syntax: unmark <index>
 
-[ERROR] exceptions.CommandTurtleException: Unable to parse <index> 'abc'
+[ERROR] turtle.exceptions.CommandTurtleException: Unable to parse <index> 'abc'
 Correct Syntax: unmark <index>
 
-[ERROR] exceptions.CommandTurtleException: Invalid task index 0
+[ERROR] turtle.exceptions.CommandTurtleException: Invalid task index 0
 Correct Syntax: unmark <index>
 
-[ERROR] exceptions.CommandTurtleException: Invalid task index 2
+[ERROR] turtle.exceptions.CommandTurtleException: Invalid task index 2
 Correct Syntax: unmark <index>
 
 I've marked the following task as not done:
@@ -50,13 +50,13 @@ I've marked the following task as not done:
 Here are your tasks:
 1. [T][ ] Task A
 
-[ERROR] exceptions.CommandTurtleException: Unable to find '/by' section
+[ERROR] turtle.exceptions.CommandTurtleException: Unable to find '/by' section
 Correct Syntax: deadline <task_name> /by <deadline>
 
-[ERROR] exceptions.CommandTurtleException: Unable to find <task_name>
+[ERROR] turtle.exceptions.CommandTurtleException: Unable to find <task_name>
 Correct Syntax: deadline <task_name> /by <deadline>
 
-[ERROR] exceptions.CommandTurtleException: Unable to find <deadline>
+[ERROR] turtle.exceptions.CommandTurtleException: Unable to find <deadline>
 Correct Syntax: deadline <task_name> /by <deadline>
 
 Added: [D][ ] Task B (by: Task B's Deadline)
@@ -79,22 +79,22 @@ Here are your tasks:
 1. [T][ ] Task A
 2. [D][ ] Task B (by: Task B's Deadline)
 
-[ERROR] exceptions.CommandTurtleException: Unable to find '/from' section
+[ERROR] turtle.exceptions.CommandTurtleException: Unable to find '/from' section
 Correct Syntax: event <task_name> /from <from_datetime> /to <to_datetime>
 
-[ERROR] exceptions.CommandTurtleException: Unable to find '/to' section
+[ERROR] turtle.exceptions.CommandTurtleException: Unable to find '/to' section
 Correct Syntax: event <task_name> /from <from_datetime> /to <to_datetime>
 
-[ERROR] exceptions.CommandTurtleException: Unable to find <task_name>
+[ERROR] turtle.exceptions.CommandTurtleException: Unable to find <task_name>
 Correct Syntax: event <task_name> /from <from_datetime> /to <to_datetime>
 
-[ERROR] exceptions.CommandTurtleException: Expected '/from' before '/to'
+[ERROR] turtle.exceptions.CommandTurtleException: Expected '/from' before '/to'
 Correct Syntax: event <task_name> /from <from_datetime> /to <to_datetime>
 
-[ERROR] exceptions.CommandTurtleException: Unable to find <from_datetime>
+[ERROR] turtle.exceptions.CommandTurtleException: Unable to find <from_datetime>
 Correct Syntax: event <task_name> /from <from_datetime> /to <to_datetime>
 
-[ERROR] exceptions.CommandTurtleException: Unable to find <to_datetime>
+[ERROR] turtle.exceptions.CommandTurtleException: Unable to find <to_datetime>
 Correct Syntax: event <task_name> /from <from_datetime> /to <to_datetime>
 
 Added: [E][ ] Task C (from: Task C Start, to: Task C End)
@@ -104,16 +104,16 @@ Here are your tasks:
 2. [D][ ] Task B (by: Task B's Deadline)
 3. [E][ ] Task C (from: Task C Start, to: Task C End)
 
-[ERROR] exceptions.CommandTurtleException: Invalid syntax
+[ERROR] turtle.exceptions.CommandTurtleException: Invalid syntax
 Correct Syntax: delete <index>
 
-[ERROR] exceptions.CommandTurtleException: Unable to parse <index> 'abc'
+[ERROR] turtle.exceptions.CommandTurtleException: Unable to parse <index> 'abc'
 Correct Syntax: delete <index>
 
-[ERROR] exceptions.CommandTurtleException: Invalid task index 0
+[ERROR] turtle.exceptions.CommandTurtleException: Invalid task index 0
 Correct Syntax: delete <index>
 
-[ERROR] exceptions.CommandTurtleException: Invalid task index 4
+[ERROR] turtle.exceptions.CommandTurtleException: Invalid task index 4
 Correct Syntax: delete <index>
 
 I've deleted the following task:

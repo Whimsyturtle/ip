@@ -1,5 +1,7 @@
-import tasks.Task;
-import tasks.TaskList;
+package turtle.core;
+
+import turtle.tasks.Task;
+import turtle.tasks.TaskList;
 
 import java.io.InputStream;
 import java.io.PrintStream;

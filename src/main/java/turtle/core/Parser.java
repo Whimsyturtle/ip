@@ -1,9 +1,11 @@
-import exceptions.ByeTurtleException;
-import exceptions.CommandTurtleException;
-import exceptions.TurtleException;
-import tasks.DeadlineTask;
-import tasks.EventTask;
-import tasks.TodoTask;
+package turtle.core;
+
+import turtle.exceptions.ByeTurtleException;
+import turtle.exceptions.CommandTurtleException;
+import turtle.exceptions.TurtleException;
+import turtle.tasks.DeadlineTask;
+import turtle.tasks.EventTask;
+import turtle.tasks.TodoTask;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;

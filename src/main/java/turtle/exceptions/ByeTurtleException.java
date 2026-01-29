@@ -1,4 +1,4 @@
-package exceptions;
+package turtle.exceptions;
 
 public class ByeTurtleException extends TurtleException {
 

@@ -1,8 +1,10 @@
-import exceptions.ByeTurtleException;
-import exceptions.CommandTurtleException;
-import exceptions.TurtleException;
-import tasks.Task;
-import tasks.TaskList;
+package turtle.core;
+
+import turtle.exceptions.ByeTurtleException;
+import turtle.exceptions.CommandTurtleException;
+import turtle.exceptions.TurtleException;
+import turtle.tasks.Task;
+import turtle.tasks.TaskList;
 
 import java.io.IOException;
 import java.nio.file.Path;

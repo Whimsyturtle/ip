@@ -1,5 +1,7 @@
-import tasks.TaskFactory;
-import tasks.TaskList;
+package turtle.core;
+
+import turtle.tasks.TaskFactory;
+import turtle.tasks.TaskList;
 
 import java.io.FileWriter;
 import java.io.IOException;
