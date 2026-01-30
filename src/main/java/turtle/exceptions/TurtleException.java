@@ -1,6 +1,6 @@
 package turtle.exceptions;
 
-/** Base Exception class for Turtle Chatbot. */
+/** Base Exception class for the Turtle Chatbot. */
 public class TurtleException extends Exception {
 
     /**

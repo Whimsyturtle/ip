@@ -72,8 +72,8 @@ public class Chatbot {
 
     /**
      * Runs chatbot, which involves greeting the user, followed by continually listening and responding to the user's
-     * commands, and automatically syncing task changes (if any). If the user says bye, the chatbot will say bye to the
-     * user and terminate.
+     * commands, and automatically syncing task changes (if any) to storage. If the user says bye, the chatbot will say
+     * bye to the user and terminate.
      */
     public void run() {
         Parser parser = new Parser(this);

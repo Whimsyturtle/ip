@@ -50,7 +50,7 @@ public class Ui {
     }
 
     /**
-     * Outputs a message confirming the newly-added task.
+     * Outputs a message confirming the newly-added task to the user.
      *
      * @param newTask Newly-added task.
      */
@@ -68,25 +68,25 @@ public class Ui {
     }
 
     /**
-     * Outputs a message confirming the task was marked as done.
+     * Outputs a message confirming the task was marked as done to the user.
      *
-     * @param task Task to be marked.
+     * @param task Task marked as done.
      */
     public void mark(Task task) {
         this.printStream.println("I've marked the following task as done:\n" + task + "\n");
     }
 
     /**
-     * Outputs a message confirming the task was marked as not done.
+     * Outputs a message confirming the task was marked as not done to the user.
      *
-     * @param task Task to be unmarked.
+     * @param task Task unmarked as done.
      */
     public void unmark(Task task) {
         this.printStream.println("I've marked the following task as not done:\n" + task + "\n");
     }
 
     /**
-     * Outputs a message confirming the deleted task.
+     * Outputs a message confirming the deleted task to the user.
      *
      * @param task Deleted task.
      */

@@ -7,7 +7,7 @@ public class TaskFactory {
 
     /**
      * Converts the given serialized task string into its corresponding task object, by parsing the task type first,
-     * followed by each task's various components.
+     * followed by each of the task's various components.
      *
      * @param serializedStr Serialized, machine-readable representation of the task.
      * @return Corresponding task object.
