@@ -62,7 +62,7 @@ public class TaskList {
         String res = "";
         for (int i = 0; i < this.list.size(); i++) {
             Task task = this.list.get(i);
-            res += i+1 + ". " + task.toString() + "\n";
+            res += (i + 1) + ". " + task.toString() + "\n";
         }
         return res;
     }
