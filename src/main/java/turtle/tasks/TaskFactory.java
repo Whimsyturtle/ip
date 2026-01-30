@@ -123,8 +123,8 @@ public class TaskFactory {
     private static EventTask deserializeEventTask(String[] parts) {
         String name = null;
         Boolean isDone = null;
-        String fromDateTime = null;
-        String toDateTime = null;
+        String fromDate = null;
+        String toDate = null;
         for (int i = 1; i < parts.length; i++) {
             String[] kvPair = parts[i].split("=");
             if (kvPair.length != 2) {
@@ -136,10 +136,10 @@ public class TaskFactory {
                 name = value;
             } else if (key.equals("isDone")) {
                 isDone = Boolean.valueOf(value);
-            } else if (key.equals("fromDateTime")) {
-                fromDateTime = value;
-            } else if (key.equals("toDateTime")) {
-                toDateTime = value;
+            } else if (key.equals("fromDate")) {
+                fromDate = value;
+            } else if (key.equals("toDate")) {
+                toDate = value;
             } else {
                 throw new IllegalStateException("Unable to deserialize EventTask: invalid key " + key);
             }
@@ -150,16 +150,16 @@ public class TaskFactory {
         if (isDone == null) {
             throw new IllegalStateException("Unable to deserialize EventTask: missing isDone");
         }
-        if (fromDateTime == null) {
-            throw new IllegalStateException("Unable to deserialize EventTask: missing fromDateTime");
+        if (fromDate == null) {
+            throw new IllegalStateException("Unable to deserialize EventTask: missing fromDate");
         }
-        if (toDateTime == null) {
-            throw new IllegalStateException("Unable to deserialize EventTask: missing toDateTime");
+        if (toDate == null) {
+            throw new IllegalStateException("Unable to deserialize EventTask: missing toDate");
         }
         // TODO: Custom error message for LocalDate.parse()?
-        LocalDate parsedFromDateTime = LocalDate.parse(fromDateTime);
-        LocalDate parsedToDateTime = LocalDate.parse(toDateTime);
-        return new EventTask(name, isDone, parsedFromDateTime, parsedToDateTime);
+        LocalDate parsedFromDate = LocalDate.parse(fromDate);
+        LocalDate parsedToDate = LocalDate.parse(toDate);
+        return new EventTask(name, isDone, parsedFromDate, parsedToDate);
     }
 
 }

@@ -89,50 +89,49 @@ public class Parser {
             int toSectionIdx = Arrays.asList(sections).indexOf("/to");
             if (fromSectionIdx == -1) {
                 throw new CommandTurtleException("Unable to find '/from' section",
-                        "event <task_name> /from <from_datetime> /to <to_datetime>");
+                        "event <task_name> /from <from_date> /to <to_date>");
             }
             if (toSectionIdx == -1) {
                 throw new CommandTurtleException("Unable to find '/to' section",
-                        "event <task_name> /from <from_datetime> /to <to_datetime>");
+                        "event <task_name> /from <from_date> /to <to_date>");
             }
             if (fromSectionIdx >= toSectionIdx) {
                 throw new CommandTurtleException("Expected '/from' before '/to'",
-                        "event <task_name> /from <from_datetime> /to <to_datetime>");
+                        "event <task_name> /from <from_date> /to <to_date>");
             }
             if (fromSectionIdx == 1) {
                 throw new CommandTurtleException("Unable to find <task_name>",
-                        "event <task_name> /from <from_datetime> /to <to_datetime>");
+                        "event <task_name> /from <from_date> /to <to_date>");
             }
             if (fromSectionIdx + 1 == toSectionIdx) {
-                throw new CommandTurtleException("Unable to find <from_datetime>",
-                        "event <task_name> /from <from_datetime> /to <to_datetime>");
+                throw new CommandTurtleException("Unable to find <from_date>",
+                        "event <task_name> /from <from_date> /to <to_date>");
             }
             if (toSectionIdx == sections.length - 1) {
-                throw new CommandTurtleException("Unable to find <to_datetime>",
-                        "event <task_name> /from <from_datetime> /to <to_datetime>");
+                throw new CommandTurtleException("Unable to find <to_date>",
+                        "event <task_name> /from <from_date> /to <to_date>");
             }
             String taskName = String.join(" ", Arrays.copyOfRange(sections, 1, fromSectionIdx));
-            String taskFromDateTime = String.join(" ", Arrays.copyOfRange(sections, fromSectionIdx + 1, toSectionIdx));
-            String taskToDateTime = String.join(" ", Arrays.copyOfRange(sections, toSectionIdx + 1, sections.length));
-            LocalDate parsedTaskFromDateTime = null;
+            String taskFromDate = String.join(" ", Arrays.copyOfRange(sections, fromSectionIdx + 1, toSectionIdx));
+            String taskToDate = String.join(" ", Arrays.copyOfRange(sections, toSectionIdx + 1, sections.length));
+            LocalDate parsedTaskFromDate = null;
             try {
-                parsedTaskFromDateTime = LocalDate.parse(taskFromDateTime);
+                parsedTaskFromDate = LocalDate.parse(taskFromDate);
             } catch (DateTimeParseException e) {
-                throw new CommandTurtleException("Unable to parse <from_datetime> '" + taskFromDateTime + "'",
-                        "event <task_name> /from <from_datetime> /to <to_datetime>");
+                throw new CommandTurtleException("Unable to parse <from_date> '" + taskFromDate + "'",
+                        "event <task_name> /from <from_date> /to <to_date>");
             }
-            LocalDate parsedTaskToDateTime = null;
+            LocalDate parsedTaskToDate = null;
             try {
-                parsedTaskToDateTime = LocalDate.parse(taskToDateTime);
+                parsedTaskToDate = LocalDate.parse(taskToDate);
             } catch (DateTimeParseException e) {
-                throw new CommandTurtleException("Unable to parse <to_datetime> '" + taskToDateTime + "'",
-                        "event <task_name> /from <from_datetime> /to <to_datetime>");
+                throw new CommandTurtleException("Unable to parse <to_date> '" + taskToDate + "'",
+                        "event <task_name> /from <from_date> /to <to_date>");
             }
-            EventTask task = new EventTask(taskName, parsedTaskFromDateTime, parsedTaskToDateTime);
+            EventTask task = new EventTask(taskName, parsedTaskFromDate, parsedTaskToDate);
             this.bot.addTask(task);
         } else if (sections[0].equals("find")) {
-            String remainingStr = String.join(" ",
-                    Arrays.copyOfRange(sections, 1, sections.length));
+            String remainingStr = String.join(" ", Arrays.copyOfRange(sections, 1, sections.length));
             this.bot.find(remainingStr);
         } else {
             throw new CommandTurtleException("Unknown command '" + sections[0] + "'", "help");
