@@ -1,13 +1,13 @@
 package turtle.core;
 
+import java.io.IOException;
+import java.nio.file.Path;
+
 import turtle.exceptions.ByeTurtleException;
 import turtle.exceptions.CommandTurtleException;
 import turtle.exceptions.TurtleException;
 import turtle.tasks.Task;
 import turtle.tasks.TaskList;
-
-import java.io.IOException;
-import java.nio.file.Path;
 
 public class Chatbot {
 
@@ -41,7 +41,7 @@ public class Chatbot {
         if (idx < 1 || idx > this.taskList.size()) {
             throw new CommandTurtleException("Invalid task index " + idx, "mark <index>");
         }
-        Task task = this.taskList.get(idx-1);
+        Task task = this.taskList.get(idx - 1);
         task.markDone();
         this.ui.mark(task);
     }
@@ -50,7 +50,7 @@ public class Chatbot {
         if (idx < 1 || idx > this.taskList.size()) {
             throw new CommandTurtleException("Invalid task index " + idx, "unmark <index>");
         }
-        Task task = this.taskList.get(idx-1);
+        Task task = this.taskList.get(idx - 1);
         task.unmarkDone();
         this.ui.unmark(task);
     }
@@ -59,7 +59,7 @@ public class Chatbot {
         if (idx < 1 || idx > this.taskList.size()) {
             throw new CommandTurtleException("Invalid task index " + idx, "delete <index>");
         }
-        Task task = this.taskList.remove(idx-1);
+        Task task = this.taskList.remove(idx - 1);
         this.ui.delete(task);
     }
 
