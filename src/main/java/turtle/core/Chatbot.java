@@ -9,12 +9,19 @@ import turtle.exceptions.TurtleException;
 import turtle.tasks.Task;
 import turtle.tasks.TaskList;
 
+/** Chatbot maintains a list of tasks, automatically syncs them with a storage file, and supports various methods. */
 public class Chatbot {
 
     private final Ui ui;
     private final Storage storage;
     private final TaskList taskList;
 
+    /**
+     * Creates Chatbot object which can interact with user via command-line interface, maintain a list of tasks, and
+     * automatically sync them with a storage file.
+     *
+     * @param storagePath Path of storage file.
+     */
     public Chatbot(Path storagePath) {
         this.ui = new Ui(System.out, System.in);
         this.storage = new Storage(storagePath);
@@ -74,6 +81,11 @@ public class Chatbot {
         this.ui.list(filteredTaskList);
     }
 
+    /**
+     * Runs chatbot, which involves greeting the user, followed by continually listening and responding to the user's
+     * commands, and automatically syncing task changes (if any) to storage. If the user says bye, the chatbot will say
+     * bye to the user and terminate.
+     */
     public void run() {
         Parser parser = new Parser(this);
         this.ui.greet();
