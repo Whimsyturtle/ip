@@ -142,6 +142,10 @@ public class Parser {
             }
             EventTask task = new EventTask(taskName, parsedTaskFromDateTime, parsedTaskToDateTime);
             this.bot.addTask(task);
+        } else if (sections[0].equals("find")) {
+            String remainingStr = String.join(" ",
+                    Arrays.copyOfRange(sections, 1, sections.length));
+            this.bot.find(remainingStr);
         } else {
             throw new CommandTurtleException("Unknown command '" + sections[0] + "'", "help");
         }

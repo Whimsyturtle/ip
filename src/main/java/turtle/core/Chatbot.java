@@ -63,6 +63,17 @@ public class Chatbot {
         this.ui.delete(task);
     }
 
+    public void find(String str) {
+        TaskList filteredTaskList = new TaskList();
+        for (int i = 0; i < this.taskList.size(); i++) {
+            Task task = this.taskList.get(i);
+            if (task.toString().contains(str)) {
+                filteredTaskList.add(task);
+            }
+        }
+        this.ui.list(filteredTaskList);
+    }
+
     public void run() {
         Parser parser = new Parser(this);
         this.ui.greet();
