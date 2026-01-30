@@ -1,15 +1,15 @@
 package turtle.core;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.Arrays;
+
 import turtle.exceptions.ByeTurtleException;
 import turtle.exceptions.CommandTurtleException;
 import turtle.exceptions.TurtleException;
 import turtle.tasks.DeadlineTask;
 import turtle.tasks.EventTask;
 import turtle.tasks.TodoTask;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.util.Arrays;
 
 public class Parser {
 
@@ -33,8 +33,7 @@ public class Parser {
                 int idx = Integer.parseInt(sections[1]);
                 this.bot.mark(idx);
             } catch (NumberFormatException e) {
-                throw new CommandTurtleException("Unable to parse <index> '" + sections[1] + "'",
-                        "mark <index>");
+                throw new CommandTurtleException("Unable to parse <index> '" + sections[1] + "'", "mark <index>");
             }
         } else if (sections[0].equals("unmark")) {
             if (sections.length != 2) {
@@ -44,8 +43,7 @@ public class Parser {
                 int idx = Integer.parseInt(sections[1]);
                 this.bot.unmark(idx);
             } catch (NumberFormatException e) {
-                throw new CommandTurtleException("Unable to parse <index> '" + sections[1] + "'",
-                        "unmark <index>");
+                throw new CommandTurtleException("Unable to parse <index> '" + sections[1] + "'", "unmark <index>");
             }
         } else if (sections[0].equals("delete")) {
             if (sections.length != 2) {
@@ -55,35 +53,28 @@ public class Parser {
                 int idx = Integer.parseInt(sections[1]);
                 this.bot.delete(idx);
             } catch (NumberFormatException e) {
-                throw new CommandTurtleException("Unable to parse <index> '" + sections[1] + "'",
-                        "delete <index>");
+                throw new CommandTurtleException("Unable to parse <index> '" + sections[1] + "'", "delete <index>");
             }
         } else if (sections[0].equals("todo")) {
             if (sections.length == 1) {
                 throw new CommandTurtleException("Invalid syntax", "todo <task_name>");
             }
-            String remainingStr = String.join(" ",
-                    Arrays.copyOfRange(sections, 1, sections.length));
+            String remainingStr = String.join(" ", Arrays.copyOfRange(sections, 1, sections.length));
             TodoTask task = new TodoTask(remainingStr);
             this.bot.addTask(task);
         } else if (sections[0].equals("deadline")) {
             int bySectionIdx = Arrays.asList(sections).indexOf("/by");
             if (bySectionIdx == -1) {
-                throw new CommandTurtleException("Unable to find '/by' section",
-                        "deadline <task_name> /by <deadline>");
+                throw new CommandTurtleException("Unable to find '/by' section", "deadline <task_name> /by <deadline>");
             }
             if (bySectionIdx == 1) {
-                throw new CommandTurtleException("Unable to find <task_name>",
-                        "deadline <task_name> /by <deadline>");
+                throw new CommandTurtleException("Unable to find <task_name>", "deadline <task_name> /by <deadline>");
             }
-            if (bySectionIdx == sections.length-1) {
-                throw new CommandTurtleException("Unable to find <deadline>",
-                        "deadline <task_name> /by <deadline>");
+            if (bySectionIdx == sections.length - 1) {
+                throw new CommandTurtleException("Unable to find <deadline>", "deadline <task_name> /by <deadline>");
             }
-            String taskName = String.join(" ",
-                    Arrays.copyOfRange(sections, 1, bySectionIdx));
-            String taskDeadline = String.join(" ",
-                    Arrays.copyOfRange(sections, bySectionIdx+1, sections.length));
+            String taskName = String.join(" ", Arrays.copyOfRange(sections, 1, bySectionIdx));
+            String taskDeadline = String.join(" ", Arrays.copyOfRange(sections, bySectionIdx + 1, sections.length));
             LocalDate parsedTaskDeadline = null;
             try {
                 parsedTaskDeadline = LocalDate.parse(taskDeadline);
@@ -112,20 +103,17 @@ public class Parser {
                 throw new CommandTurtleException("Unable to find <task_name>",
                         "event <task_name> /from <from_datetime> /to <to_datetime>");
             }
-            if (fromSectionIdx+1 == toSectionIdx) {
+            if (fromSectionIdx + 1 == toSectionIdx) {
                 throw new CommandTurtleException("Unable to find <from_datetime>",
                         "event <task_name> /from <from_datetime> /to <to_datetime>");
             }
-            if (toSectionIdx == sections.length-1) {
+            if (toSectionIdx == sections.length - 1) {
                 throw new CommandTurtleException("Unable to find <to_datetime>",
                         "event <task_name> /from <from_datetime> /to <to_datetime>");
             }
-            String taskName = String.join(" ",
-                    Arrays.copyOfRange(sections, 1, fromSectionIdx));
-            String taskFromDateTime = String.join(" ",
-                    Arrays.copyOfRange(sections, fromSectionIdx+1, toSectionIdx));
-            String taskToDateTime = String.join(" ",
-                    Arrays.copyOfRange(sections, toSectionIdx+1, sections.length));
+            String taskName = String.join(" ", Arrays.copyOfRange(sections, 1, fromSectionIdx));
+            String taskFromDateTime = String.join(" ", Arrays.copyOfRange(sections, fromSectionIdx + 1, toSectionIdx));
+            String taskToDateTime = String.join(" ", Arrays.copyOfRange(sections, toSectionIdx + 1, sections.length));
             LocalDate parsedTaskFromDateTime = null;
             try {
                 parsedTaskFromDateTime = LocalDate.parse(taskFromDateTime);

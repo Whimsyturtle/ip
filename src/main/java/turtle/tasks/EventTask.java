@@ -27,8 +27,8 @@ public class EventTask extends Task {
 
     @Override
     public String serialize() {
-        return "event|name=" + this.name + "|isDone=" + this.isDone
-                + "|fromDateTime=" + this.fromDateTime + "|toDateTime=" + this.toDateTime;
+        return "event|name=" + this.name + "|isDone=" + this.isDone + "|fromDateTime=" + this.fromDateTime
+                + "|toDateTime=" + this.toDateTime;
     }
 
 }

@@ -1,11 +1,11 @@
 package turtle.core;
 
-import turtle.tasks.Task;
-import turtle.tasks.TaskList;
-
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
+
+import turtle.tasks.Task;
+import turtle.tasks.TaskList;
 
 public class Ui {
 
