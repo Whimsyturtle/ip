@@ -38,15 +38,29 @@ public class Chatbot {
         this.parser = new Parser();
     }
 
+    /**
+     * Adds the given task into the task list, and displays the newly-added task.
+     *
+     * @param newTask Task to be added.
+     */
     public void addTask(Task newTask) {
         this.taskList.add(newTask);
         this.ui.addTask(newTask);
     }
 
+    /**
+     * Displays all tasks currently stored in the task list.
+     */
     public void list() {
         this.ui.list(this.taskList);
     }
 
+    /**
+     * Marks the task at the given index as done, and displays the task.
+     *
+     * @param idx Index of the task to be marked.
+     * @throws CommandTurtleException If the given index is invalid.
+     */
     public void mark(int idx) throws CommandTurtleException {
         if (idx < 1 || idx > this.taskList.size()) {
             throw new CommandTurtleException("Invalid task index " + idx, "mark <index>");
@@ -56,6 +70,12 @@ public class Chatbot {
         this.ui.mark(task);
     }
 
+    /**
+     * Marks the task at the given index as not done, and displays the task.
+     *
+     * @param idx Index of the task to be unmarked.
+     * @throws CommandTurtleException If the given index is invalid.
+     */
     public void unmark(int idx) throws CommandTurtleException {
         if (idx < 1 || idx > this.taskList.size()) {
             throw new CommandTurtleException("Invalid task index " + idx, "unmark <index>");
@@ -65,6 +85,12 @@ public class Chatbot {
         this.ui.unmark(task);
     }
 
+    /**
+     * Deletes the task at the given index, and displays the task.
+     *
+     * @param idx Index of the task to be deleted.
+     * @throws CommandTurtleException If the given index is invalid.
+     */
     public void delete(int idx) throws CommandTurtleException {
         if (idx < 1 || idx > this.taskList.size()) {
             throw new CommandTurtleException("Invalid task index " + idx, "delete <index>");
@@ -73,6 +99,11 @@ public class Chatbot {
         this.ui.delete(task);
     }
 
+    /**
+     * Searches for all tasks containing the given search string, and displays them.
+     *
+     * @param str Search string.
+     */
     public void find(String str) {
         TaskList filteredTaskList = new TaskList();
         for (int i = 0; i < this.taskList.size(); i++) {
