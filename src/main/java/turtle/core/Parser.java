@@ -13,8 +13,17 @@ import turtle.core.commands.UnmarkCommand;
 import turtle.exceptions.CommandTurtleException;
 import turtle.exceptions.TurtleException;
 
+/** Parser supports the parsing of user commands into Command objects. */
 public class Parser {
 
+    /**
+     * Converts the given user command string into its corresponding command object, by parsing the command type first,
+     * followed by each of the command's various sections.
+     *
+     * @param userCommand User's command.
+     * @return Command object that represents the user's command.
+     * @throws TurtleException If command syntax is malformed.
+     */
     public Command parseCommand(String userCommand) throws TurtleException {
         String[] sections = userCommand.split(" ");
         if (sections[0].equals("bye")) {

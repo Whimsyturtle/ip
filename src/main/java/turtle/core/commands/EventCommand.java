@@ -8,10 +8,18 @@ import turtle.core.Chatbot;
 import turtle.exceptions.CommandTurtleException;
 import turtle.tasks.EventTask;
 
+/** EventCommand represents the command `event &lt;task_name&gt; /from &lt;from_date&gt; /to &lt;to_date&gt;` */
 public class EventCommand extends Command {
 
     private final EventTask task;
 
+    /**
+     * Parses the event command and creates a EventTask object.
+     *
+     * @param sections Command sections.
+     * @param correctSyntax Command syntax `event &lt;task_name&gt; /from &lt;from_date&gt; /to &lt;to_date&gt;`.
+     * @throws CommandTurtleException If command syntax is malformed.
+     */
     public EventCommand(String[] sections, String correctSyntax) throws CommandTurtleException {
         int fromSectionIdx = Arrays.asList(sections).indexOf("/from");
         int toSectionIdx = Arrays.asList(sections).indexOf("/to");
@@ -51,6 +59,11 @@ public class EventCommand extends Command {
         this.task = new EventTask(taskName, parsedTaskFromDate, parsedTaskToDate);
     }
 
+    /**
+     * Adds the created EventTask object to the Turtle Chatbot's task list.
+     *
+     * @param bot Turtle Chatbot.
+     */
     @Override
     public void executeCommand(Chatbot bot) {
         bot.addTask(task);

@@ -8,10 +8,18 @@ import turtle.core.Chatbot;
 import turtle.exceptions.CommandTurtleException;
 import turtle.tasks.DeadlineTask;
 
+/** DeadlineCommand represents the command `deadline &lt;task_name&gt; /by &lt;deadline&gt;` */
 public class DeadlineCommand extends Command {
 
     private final DeadlineTask task;
 
+    /**
+     * Parses the deadline command and creates a DeadlineTask object.
+     *
+     * @param sections Command sections.
+     * @param correctSyntax Command syntax `deadline &lt;task_name&gt; /by &lt;deadline&gt;`.
+     * @throws CommandTurtleException If command syntax is malformed.
+     */
     public DeadlineCommand(String[] sections, String correctSyntax) throws CommandTurtleException {
         int bySectionIdx = Arrays.asList(sections).indexOf("/by");
         if (bySectionIdx == -1) {
@@ -34,6 +42,11 @@ public class DeadlineCommand extends Command {
         this.task = new DeadlineTask(taskName, parsedTaskDeadline);
     }
 
+    /**
+     * Adds the created DeadlineTask object to the Turtle Chatbot's task list.
+     *
+     * @param bot Turtle Chatbot.
+     */
     @Override
     public void executeCommand(Chatbot bot) {
         bot.addTask(task);
