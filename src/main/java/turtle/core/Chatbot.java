@@ -3,6 +3,7 @@ package turtle.core;
 import java.io.IOException;
 import java.nio.file.Path;
 
+import turtle.core.commands.Command;
 import turtle.exceptions.ByeTurtleException;
 import turtle.exceptions.CommandTurtleException;
 import turtle.exceptions.TurtleException;
@@ -15,6 +16,7 @@ public class Chatbot {
     private final Ui ui;
     private final Storage storage;
     private final TaskList taskList;
+    private final Parser parser;
 
     /**
      * Creates Chatbot object which can interact with user via command-line interface, maintain a list of tasks, and
@@ -33,6 +35,7 @@ public class Chatbot {
             tmpTaskList = new TaskList();
         }
         this.taskList = tmpTaskList;
+        this.parser = new Parser();
     }
 
     public void addTask(Task newTask) {
@@ -87,12 +90,12 @@ public class Chatbot {
      * bye to the user and terminate.
      */
     public void run() {
-        Parser parser = new Parser(this);
         this.ui.greet();
         while (true) {
             String userCommand = this.ui.getCommand();
             try {
-                parser.parseCommand(userCommand);
+                Command command = this.parser.parseCommand(userCommand);
+                command.executeCommand(this);
                 try {
                     this.storage.saveTasksToFile(this.taskList);
                 } catch (IOException e) {
