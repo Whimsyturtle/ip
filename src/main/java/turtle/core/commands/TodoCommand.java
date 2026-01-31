@@ -11,7 +11,6 @@ public class TodoCommand extends Command {
     private final TodoTask task;
 
     public TodoCommand(String[] sections, String correctSyntax) throws CommandTurtleException {
-        super(sections, correctSyntax);
         if (sections.length == 1) {
             throw new CommandTurtleException("Invalid syntax", correctSyntax);
         }

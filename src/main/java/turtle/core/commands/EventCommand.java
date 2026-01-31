@@ -13,7 +13,6 @@ public class EventCommand extends Command {
     private final EventTask task;
 
     public EventCommand(String[] sections, String correctSyntax) throws CommandTurtleException {
-        super(sections, correctSyntax);
         int fromSectionIdx = Arrays.asList(sections).indexOf("/from");
         int toSectionIdx = Arrays.asList(sections).indexOf("/to");
         if (fromSectionIdx == -1) {

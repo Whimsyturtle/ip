@@ -9,7 +9,6 @@ public class MarkCommand extends Command {
     private final int index;
 
     public MarkCommand(String[] sections, String correctSyntax) throws CommandTurtleException {
-        super(sections, correctSyntax);
         if (sections.length != 2) {
             throw new CommandTurtleException("Invalid syntax", correctSyntax);
         }

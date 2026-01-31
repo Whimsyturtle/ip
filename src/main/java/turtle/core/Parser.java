@@ -18,9 +18,9 @@ public class Parser {
     public Command parseCommand(String userCommand) throws TurtleException {
         String[] sections = userCommand.split(" ");
         if (sections[0].equals("bye")) {
-            return new ByeCommand(sections, "bye");
+            return new ByeCommand();
         } else if (sections[0].equals("list")) {
-            return new ListCommand(sections, "list");
+            return new ListCommand();
         } else if (sections[0].equals("mark")) {
             return new MarkCommand(sections, "mark <index>");
         } else if (sections[0].equals("unmark")) {

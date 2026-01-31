@@ -13,7 +13,6 @@ public class DeadlineCommand extends Command {
     private final DeadlineTask task;
 
     public DeadlineCommand(String[] sections, String correctSyntax) throws CommandTurtleException {
-        super(sections, correctSyntax);
         int bySectionIdx = Arrays.asList(sections).indexOf("/by");
         if (bySectionIdx == -1) {
             throw new CommandTurtleException("Unable to find '/by' section", correctSyntax);

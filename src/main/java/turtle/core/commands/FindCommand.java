@@ -11,8 +11,9 @@ public class FindCommand extends Command {
     private final String searchStr;
 
     public FindCommand(String[] sections, String correctSyntax) throws CommandTurtleException {
-        super(sections, correctSyntax);
-        // TODO: Add check similar to ListCommand
+        if (sections.length == 1) {
+            throw new CommandTurtleException("Invalid syntax", correctSyntax);
+        }
         this.searchStr = String.join(" ", Arrays.copyOfRange(sections, 1, sections.length));
     }
 

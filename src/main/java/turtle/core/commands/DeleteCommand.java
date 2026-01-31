@@ -9,7 +9,6 @@ public class DeleteCommand extends Command {
     private final int index;
 
     public DeleteCommand(String[] sections, String correctSyntax) throws CommandTurtleException {
-        super(sections, correctSyntax);
         if (sections.length != 2) {
             throw new CommandTurtleException("Invalid syntax", correctSyntax);
         }
