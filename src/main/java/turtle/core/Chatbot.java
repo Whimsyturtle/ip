@@ -31,7 +31,7 @@ public class Chatbot {
         try {
             tmpTaskList = this.storage.loadTasksFromFile();
         } catch (IOException e) {
-            this.ui.error("Unable to load chatbot data! Defaulting to empty task list...");
+            this.ui.displayError("Unable to load chatbot data! Defaulting to empty task list...");
             tmpTaskList = new TaskList();
         }
         this.taskList = tmpTaskList;
@@ -121,7 +121,7 @@ public class Chatbot {
      * bye to the user and terminate.
      */
     public void run() {
-        this.ui.greet();
+        this.ui.displayGreeting();
         while (true) {
             String userCommand = this.ui.getCommand();
             try {
@@ -131,16 +131,16 @@ public class Chatbot {
                     this.storage.saveTasksToFile(this.taskList);
                 } catch (IOException e) {
                     // TODO: More graceful handling
-                    this.ui.error("Unable to save chatbot data!");
+                    this.ui.displayError("Unable to save chatbot data!");
                     break;
                 }
             } catch (ByeTurtleException e) {
                 break;
             } catch (TurtleException e) {
-                this.ui.error(e.toString());
+                this.ui.displayError(e.toString());
             }
         }
-        this.ui.bye();
+        this.ui.displayBye();
     }
 
 }

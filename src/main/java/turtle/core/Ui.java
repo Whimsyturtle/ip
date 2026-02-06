@@ -36,7 +36,7 @@ public class Ui {
     /**
      * Outputs a greeting message to the user.
      */
-    public void greet() {
+    public void displayGreeting() {
         this.printStream.println("Hello! My name is Turtle.\nWhat can I do for you?\n");
     }
 
@@ -45,7 +45,7 @@ public class Ui {
      *
      * @param msg Error message.
      */
-    public void error(String msg) {
+    public void displayError(String msg) {
         this.printStream.println("[ERROR] " + msg + "\n");
     }
 
@@ -97,7 +97,7 @@ public class Ui {
     /**
      * Outputs a bye message to the user.
      */
-    public void bye() {
+    public void displayBye() {
         this.printStream.println("Bye. Hope to see you again soon!\n");
     }
 
