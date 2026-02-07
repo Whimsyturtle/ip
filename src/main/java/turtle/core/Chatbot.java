@@ -115,6 +115,10 @@ public class Chatbot {
         this.ui.list(filteredTaskList);
     }
 
+    public String getResponse(String input) {
+        return "Turtle heard: " + input;
+    }
+
     /**
      * Runs chatbot, which involves greeting the user, followed by continually listening and responding to the user's
      * commands, and automatically syncing task changes (if any) to storage. If the user says bye, the chatbot will say
