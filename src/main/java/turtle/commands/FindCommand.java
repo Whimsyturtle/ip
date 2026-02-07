@@ -36,4 +36,5 @@ public class FindCommand extends Command {
         assert bot != null;
         bot.find(searchStr);
     }
+
 }
