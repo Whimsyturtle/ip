@@ -142,13 +142,13 @@ public class Chatbot {
         } catch (ByeTurtleException e) {
             throw e; // Re-throw exception
         } catch (TurtleException e) {
-            this.ui.error(e.toString());
+            this.ui.displayError(e.toString());
         }
 
         try {
             this.storage.saveTasksToFile(this.taskList);
         } catch (IOException e) {
-            this.ui.error("Unable to save chatbot data!");
+            this.ui.displayError("Unable to save chatbot data!");
         }
 
         String response = this.baos.toString();

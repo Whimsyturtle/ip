@@ -45,7 +45,7 @@ public class Ui {
      *
      * @param msg Error message.
      */
-    public void error(String msg) {
+    public void displayError(String msg) {
         display("[ERROR] " + msg + "\n");
     }
 
