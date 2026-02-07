@@ -26,6 +26,7 @@ public class Ui {
      *
      * @return User's command.
      */
+    @Deprecated
     public String getCommand() {
         return this.scanner.nextLine();
     }

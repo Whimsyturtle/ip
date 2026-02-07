@@ -30,7 +30,7 @@ public class Turtle extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setTurtle(bot);  // inject the Duke instance
+            fxmlLoader.<MainWindow>getController().setTurtle(this.bot); // Inject the Turtle Chatbot instance
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

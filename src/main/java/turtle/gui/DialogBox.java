@@ -34,8 +34,8 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
-        dialog.setText(text);
-        displayPicture.setImage(img);
+        this.dialog.setText(text);
+        this.displayPicture.setImage(img);
     }
 
     /**
@@ -48,12 +48,26 @@ public class DialogBox extends HBox {
         this.getChildren().setAll(tmp);
     }
 
+    /**
+     * Returns a dialog box containing user's text and icon, such that user's icon is on the right.
+     *
+     * @param s User's text.
+     * @param i User's icon.
+     * @return Dialog box for user.
+     */
     public static DialogBox getUserDialog(String s, Image i) {
         return new DialogBox(s, i);
     }
 
+    /**
+     * Returns a dialog box containing Turtle's text and icon, such that Turtle's icon is on the left.
+     *
+     * @param s Turtle's text.
+     * @param i Turtle's icon.
+     * @return Dialog box for Turtle.
+     */
     public static DialogBox getTurtleDialog(String s, Image i) {
-        var db = new DialogBox(s, i);
+        DialogBox db = new DialogBox(s, i);
         db.flip();
         return db;
     }
