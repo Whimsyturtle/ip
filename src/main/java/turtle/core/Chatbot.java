@@ -45,14 +45,14 @@ public class Chatbot {
      */
     public void addTask(Task newTask) {
         this.taskList.add(newTask);
-        this.ui.addTask(newTask);
+        this.ui.display("Added: " + newTask + "\n");
     }
 
     /**
      * Displays all tasks currently stored in the task list.
      */
     public void list() {
-        this.ui.list(this.taskList);
+        this.ui.display("Here are your tasks:\n" + this.taskList);
     }
 
     /**
@@ -67,7 +67,7 @@ public class Chatbot {
         }
         Task task = this.taskList.get(idx - 1);
         task.markDone();
-        this.ui.mark(task);
+        this.ui.display("I've marked the following task as done:\n" + task + "\n");
     }
 
     /**
@@ -82,7 +82,7 @@ public class Chatbot {
         }
         Task task = this.taskList.get(idx - 1);
         task.unmarkDone();
-        this.ui.unmark(task);
+        this.ui.display("I've marked the following task as not done:\n" + task + "\n");
     }
 
     /**
@@ -96,7 +96,7 @@ public class Chatbot {
             throw new CommandTurtleException("Invalid task index " + idx, "delete <index>");
         }
         Task task = this.taskList.remove(idx - 1);
-        this.ui.delete(task);
+        this.ui.display("I've deleted the following task:\n" + task + "\n");
     }
 
     /**
@@ -112,7 +112,7 @@ public class Chatbot {
                 filteredTaskList.add(task);
             }
         }
-        this.ui.list(filteredTaskList);
+        this.ui.display("Here are your tasks:\n" + filteredTaskList);
     }
 
     public String getResponse(String input) {
@@ -125,7 +125,7 @@ public class Chatbot {
      * bye to the user and terminate.
      */
     public void run() {
-        this.ui.greet();
+        this.ui.display("Hello! My name is Turtle.\nWhat can I do for you?\n");
         while (true) {
             String userCommand = this.ui.getCommand();
             try {
@@ -144,7 +144,7 @@ public class Chatbot {
                 this.ui.error(e.toString());
             }
         }
-        this.ui.bye();
+        this.ui.display("Bye. Hope to see you again soon!\n");
     }
 
 }
