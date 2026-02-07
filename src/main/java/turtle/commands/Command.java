@@ -1,4 +1,4 @@
-package turtle.core.commands;
+package turtle.commands;
 
 import turtle.core.Chatbot;
 import turtle.exceptions.TurtleException;

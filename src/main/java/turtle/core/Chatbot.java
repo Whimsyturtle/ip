@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Path;
 
-import turtle.core.commands.Command;
+import turtle.commands.Command;
 import turtle.exceptions.ByeTurtleException;
 import turtle.exceptions.CommandTurtleException;
 import turtle.exceptions.TurtleException;

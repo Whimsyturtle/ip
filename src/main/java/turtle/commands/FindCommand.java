@@ -1,4 +1,4 @@
-package turtle.core.commands;
+package turtle.commands;
 
 import java.util.Arrays;
 

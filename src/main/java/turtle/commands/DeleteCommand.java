@@ -1,22 +1,22 @@
-package turtle.core.commands;
+package turtle.commands;
 
 import turtle.core.Chatbot;
 import turtle.exceptions.CommandTurtleException;
 import turtle.exceptions.TurtleException;
 
-/** UnmarkCommand represents the command `unmark &lt;index&gt;` */
-public class UnmarkCommand extends Command {
+/** DeleteCommand represents the command `delete &lt;index&gt;` */
+public class DeleteCommand extends Command {
 
     private final int index;
 
     /**
-     * Parses the unmark command and extracts the specified index.
+     * Parses the delete command and extracts the specified index.
      *
      * @param sections Command sections.
-     * @param correctSyntax Command syntax `unmark &lt;index&gt;`.
+     * @param correctSyntax Command syntax `delete &lt;index&gt;`.
      * @throws CommandTurtleException If command syntax is malformed.
      */
-    public UnmarkCommand(String[] sections, String correctSyntax) throws CommandTurtleException {
+    public DeleteCommand(String[] sections, String correctSyntax) throws CommandTurtleException {
         if (sections.length != 2) {
             throw new CommandTurtleException("Invalid syntax", correctSyntax);
         }
@@ -28,14 +28,14 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Unmarks the task at the specified index in the Turtle Chatbot's task list.
+     * Deletes the task at the specified index in the Turtle Chatbot's task list.
      *
      * @param bot Turtle Chatbot.
      * @throws TurtleException If the specified index is invalid.
      */
     @Override
     public void executeCommand(Chatbot bot) throws TurtleException {
-        bot.unmark(this.index);
+        bot.delete(this.index);
     }
 
 }

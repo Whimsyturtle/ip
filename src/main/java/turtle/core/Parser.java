@@ -1,15 +1,15 @@
 package turtle.core;
 
-import turtle.core.commands.ByeCommand;
-import turtle.core.commands.Command;
-import turtle.core.commands.DeadlineCommand;
-import turtle.core.commands.DeleteCommand;
-import turtle.core.commands.EventCommand;
-import turtle.core.commands.FindCommand;
-import turtle.core.commands.ListCommand;
-import turtle.core.commands.MarkCommand;
-import turtle.core.commands.TodoCommand;
-import turtle.core.commands.UnmarkCommand;
+import turtle.commands.ByeCommand;
+import turtle.commands.Command;
+import turtle.commands.DeadlineCommand;
+import turtle.commands.DeleteCommand;
+import turtle.commands.EventCommand;
+import turtle.commands.FindCommand;
+import turtle.commands.ListCommand;
+import turtle.commands.MarkCommand;
+import turtle.commands.TodoCommand;
+import turtle.commands.UnmarkCommand;
 import turtle.exceptions.CommandTurtleException;
 import turtle.exceptions.TurtleException;
 
