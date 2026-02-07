@@ -21,6 +21,8 @@ public class DeadlineCommand extends Command {
      * @throws CommandTurtleException If command syntax is malformed.
      */
     public DeadlineCommand(String[] sections, String correctSyntax) throws CommandTurtleException {
+        assert sections != null;
+        assert correctSyntax != null;
         int bySectionIdx = Arrays.asList(sections).indexOf("/by");
         if (bySectionIdx == -1) {
             throw new CommandTurtleException("Unable to find '/by' section", correctSyntax);
@@ -49,6 +51,7 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public void executeCommand(Chatbot bot) {
+        assert bot != null;
         bot.addTask(task);
     }
 

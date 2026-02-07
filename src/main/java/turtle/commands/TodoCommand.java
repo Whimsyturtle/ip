@@ -19,6 +19,8 @@ public class TodoCommand extends Command {
      * @throws CommandTurtleException If command syntax is malformed.
      */
     public TodoCommand(String[] sections, String correctSyntax) throws CommandTurtleException {
+        assert sections != null;
+        assert correctSyntax != null;
         if (sections.length == 1) {
             throw new CommandTurtleException("Invalid syntax", correctSyntax);
         }
@@ -33,6 +35,7 @@ public class TodoCommand extends Command {
      */
     @Override
     public void executeCommand(Chatbot bot) {
+        assert bot != null;
         bot.addTask(task);
     }
 

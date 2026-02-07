@@ -17,6 +17,8 @@ public class Ui {
      * @param inputStream Stream used to receive input.
      */
     public Ui(PrintStream printStream, InputStream inputStream) {
+        assert printStream != null;
+        assert inputStream != null;
         this.printStream = printStream;
         this.scanner = new Scanner(inputStream);
     }
@@ -37,6 +39,7 @@ public class Ui {
      * @param msg Message.
      */
     public void display(String msg) {
+        assert msg != null;
         this.printStream.println(msg);
     }
 
@@ -46,6 +49,7 @@ public class Ui {
      * @param msg Error message.
      */
     public void displayError(String msg) {
+        assert msg != null;
         display("[ERROR] " + msg + "\n");
     }
 

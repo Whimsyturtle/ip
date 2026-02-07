@@ -17,6 +17,8 @@ public class MarkCommand extends Command {
      * @throws CommandTurtleException If command syntax is malformed.
      */
     public MarkCommand(String[] sections, String correctSyntax) throws CommandTurtleException {
+        assert sections != null;
+        assert correctSyntax != null;
         if (sections.length != 2) {
             throw new CommandTurtleException("Invalid syntax", correctSyntax);
         }
@@ -35,6 +37,7 @@ public class MarkCommand extends Command {
      */
     @Override
     public void executeCommand(Chatbot bot) throws TurtleException {
+        assert bot != null;
         bot.mark(this.index);
     }
 
