@@ -1,6 +1,8 @@
 package turtle.core;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Path;
 
 import turtle.core.commands.Command;
@@ -13,6 +15,7 @@ import turtle.tasks.TaskList;
 /** Chatbot maintains a list of tasks, automatically syncs them with a storage file, and supports various methods. */
 public class Chatbot {
 
+    private final ByteArrayOutputStream baos;
     private final Ui ui;
     private final Storage storage;
     private final TaskList taskList;
@@ -25,8 +28,16 @@ public class Chatbot {
      * @param storagePath Path of storage file.
      */
     public Chatbot(Path storagePath) {
-        this.ui = new Ui(System.out, System.in);
+        // this.ui = new Ui(System.out, System.in);
+
+        // The following section of code is adapted from:
+        // https://stackoverflow.com/questions/1207281/java-how-do-i-read-from-printstream
+        this.baos = new ByteArrayOutputStream();
+        PrintStream ps = new PrintStream(baos, true);
+        this.ui = new Ui(ps, System.in);
+
         this.storage = new Storage(storagePath);
+
         TaskList tmpTaskList = null;
         try {
             tmpTaskList = this.storage.loadTasksFromFile();
@@ -35,6 +46,7 @@ public class Chatbot {
             tmpTaskList = new TaskList();
         }
         this.taskList = tmpTaskList;
+
         this.parser = new Parser();
     }
 
@@ -45,14 +57,14 @@ public class Chatbot {
      */
     public void addTask(Task newTask) {
         this.taskList.add(newTask);
-        this.ui.addTask(newTask);
+        this.ui.display("Added: " + newTask + "\n");
     }
 
     /**
      * Displays all tasks currently stored in the task list.
      */
     public void list() {
-        this.ui.list(this.taskList);
+        this.ui.display("Here are your tasks:\n" + this.taskList);
     }
 
     /**
@@ -67,7 +79,7 @@ public class Chatbot {
         }
         Task task = this.taskList.get(idx - 1);
         task.markDone();
-        this.ui.mark(task);
+        this.ui.display("I've marked the following task as done:\n" + task + "\n");
     }
 
     /**
@@ -82,7 +94,7 @@ public class Chatbot {
         }
         Task task = this.taskList.get(idx - 1);
         task.unmarkDone();
-        this.ui.unmark(task);
+        this.ui.display("I've marked the following task as not done:\n" + task + "\n");
     }
 
     /**
@@ -96,7 +108,7 @@ public class Chatbot {
             throw new CommandTurtleException("Invalid task index " + idx, "delete <index>");
         }
         Task task = this.taskList.remove(idx - 1);
-        this.ui.delete(task);
+        this.ui.display("I've deleted the following task:\n" + task + "\n");
     }
 
     /**
@@ -112,35 +124,36 @@ public class Chatbot {
                 filteredTaskList.add(task);
             }
         }
-        this.ui.list(filteredTaskList);
+        this.ui.display("Here are your tasks:\n" + filteredTaskList);
     }
 
     /**
-     * Runs chatbot, which involves greeting the user, followed by continually listening and responding to the user's
-     * commands, and automatically syncing task changes (if any) to storage. If the user says bye, the chatbot will say
-     * bye to the user and terminate.
+     * Returns the Turtle Chatbot's response to the given user command, and automatically syncs task changes (if any)
+     * to storage.
+     *
+     * @param userCommand User's command.
+     * @return Turtle Chatbot's response.
+     * @throws ByeTurtleException If the user says bye.
      */
-    public void run() {
-        this.ui.displayGreeting();
-        while (true) {
-            String userCommand = this.ui.getCommand();
-            try {
-                Command command = this.parser.parseCommand(userCommand);
-                command.executeCommand(this);
-                try {
-                    this.storage.saveTasksToFile(this.taskList);
-                } catch (IOException e) {
-                    // TODO: More graceful handling
-                    this.ui.displayError("Unable to save chatbot data!");
-                    break;
-                }
-            } catch (ByeTurtleException e) {
-                break;
-            } catch (TurtleException e) {
-                this.ui.displayError(e.toString());
-            }
+    public String getResponse(String userCommand) throws ByeTurtleException {
+        try {
+            Command command = this.parser.parseCommand(userCommand);
+            command.executeCommand(this);
+        } catch (ByeTurtleException e) {
+            throw e; // Re-throw exception
+        } catch (TurtleException e) {
+            this.ui.error(e.toString());
         }
-        this.ui.displayBye();
+
+        try {
+            this.storage.saveTasksToFile(this.taskList);
+        } catch (IOException e) {
+            this.ui.error("Unable to save chatbot data!");
+        }
+
+        String response = this.baos.toString();
+        this.baos.reset();
+        return response;
     }
 
 }
