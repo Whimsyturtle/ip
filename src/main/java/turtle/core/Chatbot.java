@@ -42,7 +42,7 @@ public class Chatbot {
         try {
             tmpTaskList = this.storage.loadTasksFromFile();
         } catch (IOException e) {
-            this.ui.error("Unable to load chatbot data! Defaulting to empty task list...");
+            this.ui.displayError("Unable to load chatbot data! Defaulting to empty task list...");
             tmpTaskList = new TaskList();
         }
         this.taskList = tmpTaskList;
