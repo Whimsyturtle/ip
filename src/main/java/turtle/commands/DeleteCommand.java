@@ -17,6 +17,8 @@ public class DeleteCommand extends Command {
      * @throws CommandTurtleException If command syntax is malformed.
      */
     public DeleteCommand(String[] sections, String correctSyntax) throws CommandTurtleException {
+        assert sections != null;
+        assert correctSyntax != null;
         if (sections.length != 2) {
             throw new CommandTurtleException("Invalid syntax", correctSyntax);
         }
@@ -35,6 +37,7 @@ public class DeleteCommand extends Command {
      */
     @Override
     public void executeCommand(Chatbot bot) throws TurtleException {
+        assert bot != null;
         bot.delete(this.index);
     }
 

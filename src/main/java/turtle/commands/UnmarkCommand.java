@@ -17,6 +17,8 @@ public class UnmarkCommand extends Command {
      * @throws CommandTurtleException If command syntax is malformed.
      */
     public UnmarkCommand(String[] sections, String correctSyntax) throws CommandTurtleException {
+        assert sections != null;
+        assert correctSyntax != null;
         if (sections.length != 2) {
             throw new CommandTurtleException("Invalid syntax", correctSyntax);
         }
@@ -35,6 +37,7 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public void executeCommand(Chatbot bot) throws TurtleException {
+        assert bot != null;
         bot.unmark(this.index);
     }
 

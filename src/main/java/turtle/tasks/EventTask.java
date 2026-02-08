@@ -30,6 +30,8 @@ public class EventTask extends Task {
      */
     public EventTask(String name, boolean isDone, LocalDate fromDate, LocalDate toDate) {
         super(name, isDone);
+        assert fromDate != null;
+        assert toDate != null;
         this.fromDate = fromDate;
         this.toDate = toDate;
     }

@@ -28,6 +28,7 @@ public class Chatbot {
      * @param storagePath Path of storage file.
      */
     public Chatbot(Path storagePath) {
+        assert storagePath != null;
         // this.ui = new Ui(System.out, System.in);
 
         // The following section of code is adapted from:
@@ -56,6 +57,7 @@ public class Chatbot {
      * @param newTask Task to be added.
      */
     public void addTask(Task newTask) {
+        assert newTask != null;
         this.taskList.add(newTask);
         this.ui.display("Added: " + newTask + "\n");
     }
@@ -117,6 +119,7 @@ public class Chatbot {
      * @param str Search string.
      */
     public void find(String str) {
+        assert str != null;
         TaskList filteredTaskList = new TaskList();
         for (int i = 0; i < this.taskList.size(); i++) {
             Task task = this.taskList.get(i);
@@ -136,6 +139,7 @@ public class Chatbot {
      * @throws ByeTurtleException If the user says bye.
      */
     public String getResponse(String userCommand) throws ByeTurtleException {
+        assert userCommand != null;
         try {
             Command command = this.parser.parseCommand(userCommand);
             command.executeCommand(this);

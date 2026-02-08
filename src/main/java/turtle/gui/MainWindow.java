@@ -46,6 +46,7 @@ public class MainWindow extends AnchorPane {
      * @param bot Turtle Chatbot.
      */
     public void setTurtle(Chatbot bot) {
+        assert bot != null;
         this.bot = bot;
         this.dialogContainer.getChildren().addAll(
                 DialogBox.getTurtleDialog("Hello! My name is Turtle.\nWhat can I do for you?\n", this.turtleImage)
