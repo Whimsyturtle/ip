@@ -17,46 +17,12 @@ public class TaskFactory {
         String[] parts = serializedStr.split("\\|");
         assert parts.length > 0;
         String taskType = parts[0];
-        if (taskType.equals("base")) {
-            return deserializeBaseTask(parts);
-        } else if (taskType.equals("todo")) {
-            return deserializeTodoTask(parts);
-        } else if (taskType.equals("deadline")) {
-            return deserializeDeadlineTask(parts);
-        } else if (taskType.equals("event")) {
-            return deserializeEventTask(parts);
-        } else {
-            throw new IllegalStateException("Unable to deserialize Task: unknown type " + taskType);
-        }
-    }
-
-    private static Task deserializeBaseTask(String[] parts) {
-        assert parts != null;
-        assert parts.length > 0;
-        String name = null;
-        Boolean isDone = null;
-        for (int i = 1; i < parts.length; i++) {
-            String[] kvPair = parts[i].split("=");
-            if (kvPair.length != 2) {
-                throw new IllegalStateException("Unable to deserialize BaseTask: invalid kvPair " + parts[i]);
-            }
-            String key = kvPair[0];
-            String value = kvPair[1];
-            if (key.equals("name")) {
-                name = value;
-            } else if (key.equals("isDone")) {
-                isDone = Boolean.valueOf(value);
-            } else {
-                throw new IllegalStateException("Unable to deserialize BaseTask: invalid key " + key);
-            }
-        }
-        if (name == null) {
-            throw new IllegalStateException("Unable to deserialize BaseTask: missing name");
-        }
-        if (isDone == null) {
-            throw new IllegalStateException("Unable to deserialize BaseTask: missing isDone");
-        }
-        return new Task(name, isDone);
+        return switch (taskType) {
+            case "todo" -> deserializeTodoTask(parts);
+            case "deadline" -> deserializeDeadlineTask(parts);
+            case "event" -> deserializeEventTask(parts);
+            default -> throw new IllegalStateException("Unable to deserialize Task: unknown type " + taskType);
+        };
     }
 
     private static Task deserializeTodoTask(String[] parts) {

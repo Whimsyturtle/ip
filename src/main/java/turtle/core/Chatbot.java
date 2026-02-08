@@ -29,7 +29,6 @@ public class Chatbot {
      */
     public Chatbot(Path storagePath) {
         assert storagePath != null;
-        // this.ui = new Ui(System.out, System.in);
 
         // The following section of code is adapted from:
         // https://stackoverflow.com/questions/1207281/java-how-do-i-read-from-printstream
@@ -39,7 +38,7 @@ public class Chatbot {
 
         this.storage = new Storage(storagePath);
 
-        TaskList tmpTaskList = null;
+        TaskList tmpTaskList;
         try {
             tmpTaskList = this.storage.loadTasksFromFile();
         } catch (IOException e) {
@@ -69,6 +68,12 @@ public class Chatbot {
         this.ui.display("Here are your tasks:\n" + this.taskList);
     }
 
+    private void checkIndex(int idx, String correctSyntax) throws CommandTurtleException {
+        if (idx < 1 || idx > this.taskList.size()) {
+            throw new CommandTurtleException("Invalid task index " + idx, correctSyntax);
+        }
+    }
+
     /**
      * Marks the task at the given index as done, and displays the task.
      *
@@ -76,9 +81,7 @@ public class Chatbot {
      * @throws CommandTurtleException If the given index is invalid.
      */
     public void mark(int idx) throws CommandTurtleException {
-        if (idx < 1 || idx > this.taskList.size()) {
-            throw new CommandTurtleException("Invalid task index " + idx, "mark <index>");
-        }
+        checkIndex(idx, "mark <index>");
         Task task = this.taskList.get(idx - 1);
         task.markDone();
         this.ui.display("I've marked the following task as done:\n" + task + "\n");
@@ -91,9 +94,7 @@ public class Chatbot {
      * @throws CommandTurtleException If the given index is invalid.
      */
     public void unmark(int idx) throws CommandTurtleException {
-        if (idx < 1 || idx > this.taskList.size()) {
-            throw new CommandTurtleException("Invalid task index " + idx, "unmark <index>");
-        }
+        checkIndex(idx, "unmark <index>");
         Task task = this.taskList.get(idx - 1);
         task.unmarkDone();
         this.ui.display("I've marked the following task as not done:\n" + task + "\n");
@@ -106,9 +107,7 @@ public class Chatbot {
      * @throws CommandTurtleException If the given index is invalid.
      */
     public void delete(int idx) throws CommandTurtleException {
-        if (idx < 1 || idx > this.taskList.size()) {
-            throw new CommandTurtleException("Invalid task index " + idx, "delete <index>");
-        }
+        checkIndex(idx, "delete <index>");
         Task task = this.taskList.remove(idx - 1);
         this.ui.display("I've deleted the following task:\n" + task + "\n");
     }

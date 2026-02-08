@@ -28,27 +28,18 @@ public class Parser {
         assert userCommand != null;
         String[] sections = userCommand.split(" ");
         assert sections.length > 0;
-        if (sections[0].equals("bye")) {
-            return new ByeCommand();
-        } else if (sections[0].equals("list")) {
-            return new ListCommand();
-        } else if (sections[0].equals("mark")) {
-            return new MarkCommand(sections, "mark <index>");
-        } else if (sections[0].equals("unmark")) {
-            return new UnmarkCommand(sections, "unmark <index>");
-        } else if (sections[0].equals("delete")) {
-            return new DeleteCommand(sections, "delete <index>");
-        } else if (sections[0].equals("todo")) {
-            return new TodoCommand(sections, "todo <task_name>");
-        } else if (sections[0].equals("deadline")) {
-            return new DeadlineCommand(sections, "deadline <task_name> /by <deadline>");
-        } else if (sections[0].equals("event")) {
-            return new EventCommand(sections, "event <task_name> /from <from_date> /to <to_date>");
-        } else if (sections[0].equals("find")) {
-            return new FindCommand(sections, "find <search_str>");
-        } else {
-            throw new CommandTurtleException("Unknown command '" + sections[0] + "'", "help");
-        }
+        return switch (sections[0]) {
+            case "bye" -> new ByeCommand();
+            case "list" -> new ListCommand();
+            case "mark" -> new MarkCommand(sections, "mark <index>");
+            case "unmark" -> new UnmarkCommand(sections, "unmark <index>");
+            case "delete" -> new DeleteCommand(sections, "delete <index>");
+            case "todo" -> new TodoCommand(sections, "todo <task_name>");
+            case "deadline" -> new DeadlineCommand(sections, "deadline <task_name> /by <deadline>");
+            case "event" -> new EventCommand(sections, "event <task_name> /from <from_date> /to <to_date>");
+            case "find" -> new FindCommand(sections, "find <search_str>");
+            default -> throw new CommandTurtleException("Unknown command '" + sections[0] + "'", "help");
+        };
     }
 
 }

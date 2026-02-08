@@ -46,13 +46,13 @@ public class EventCommand extends Command {
         String taskName = String.join(" ", Arrays.copyOfRange(sections, 1, fromSectionIdx));
         String taskFromDate = String.join(" ", Arrays.copyOfRange(sections, fromSectionIdx + 1, toSectionIdx));
         String taskToDate = String.join(" ", Arrays.copyOfRange(sections, toSectionIdx + 1, sections.length));
-        LocalDate parsedTaskFromDate = null;
+        LocalDate parsedTaskFromDate;
         try {
             parsedTaskFromDate = LocalDate.parse(taskFromDate);
         } catch (DateTimeParseException e) {
             throw new CommandTurtleException("Unable to parse <from_date> '" + taskFromDate + "'", correctSyntax);
         }
-        LocalDate parsedTaskToDate = null;
+        LocalDate parsedTaskToDate;
         try {
             parsedTaskToDate = LocalDate.parse(taskToDate);
         } catch (DateTimeParseException e) {
