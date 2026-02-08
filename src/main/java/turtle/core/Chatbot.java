@@ -63,8 +63,14 @@ public class Chatbot {
 
     /**
      * Displays all tasks currently stored in the task list.
+     *
+     * @param shouldSort Whether to display sorted task list.
      */
-    public void list() {
+    public void list(boolean shouldSort) {
+        if (shouldSort) {
+            this.ui.display("Here are your sorted tasks:\n" + this.taskList.sort());
+            return;
+        }
         this.ui.display("Here are your tasks:\n" + this.taskList);
     }
 

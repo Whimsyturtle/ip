@@ -15,6 +15,15 @@ public class TaskList {
     }
 
     /**
+     * Creates a pre-filled task list.
+     *
+     * @param list ArrayList of tasks.
+     */
+    public TaskList(ArrayList<Task> list) {
+        this.list = list;
+    }
+
+    /**
      * Adds the specified task to the back of the task list.
      *
      * @param task Task to be added.
@@ -51,6 +60,17 @@ public class TaskList {
      */
     public int size() {
         return this.list.size();
+    }
+
+    /**
+     * Makes a copy of the current task list, sorts it, and returns the sorted copy.
+     *
+     * @return Sorted task list.
+     */
+    public TaskList sort() {
+        ArrayList<Task> sortedTasks = new ArrayList<>(this.list);
+        sortedTasks.sort(null);
+        return new TaskList(sortedTasks);
     }
 
     /**

@@ -1,7 +1,7 @@
 package turtle.tasks;
 
 /** Task represents a named item which can be marked as done. */
-public abstract class Task {
+public abstract class Task implements Comparable<Task> {
 
     protected final String name;
     protected boolean isDone;
@@ -56,6 +56,17 @@ public abstract class Task {
      */
     public String serialize() {
         return "base|name=" + this.name + "|isDone=" + this.isDone;
+    }
+
+    @Override
+    public int compareTo(Task other) {
+        // First, sort by isDone in ascending order (i.e. incomplete tasks first)
+        if (this.isDone != other.isDone) {
+            return this.isDone ? 1 : -1;
+        }
+
+        // Second, sort by name in lexicographical order
+        return this.name.compareTo(other.name);
     }
 
 }

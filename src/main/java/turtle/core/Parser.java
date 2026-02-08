@@ -30,7 +30,7 @@ public class Parser {
         assert sections.length > 0;
         return switch (sections[0]) {
             case "bye" -> new ByeCommand();
-            case "list" -> new ListCommand();
+            case "list" -> new ListCommand(sections, "list [sort]");
             case "mark" -> new MarkCommand(sections, "mark <index>");
             case "unmark" -> new UnmarkCommand(sections, "unmark <index>");
             case "delete" -> new DeleteCommand(sections, "delete <index>");
