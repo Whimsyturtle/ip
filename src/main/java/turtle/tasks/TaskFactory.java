@@ -13,10 +13,9 @@ public class TaskFactory {
      * @return Corresponding task object.
      */
     public static Task deserialize(String serializedStr) {
+        assert serializedStr != null;
         String[] parts = serializedStr.split("\\|");
-        if (parts.length == 0) {
-            throw new IllegalStateException("Unable to deserialize Task: can't determine type");
-        }
+        assert parts.length > 0;
         String taskType = parts[0];
         return switch (taskType) {
             case "todo" -> deserializeTodoTask(parts);
@@ -27,6 +26,8 @@ public class TaskFactory {
     }
 
     private static Task deserializeTodoTask(String[] parts) {
+        assert parts != null;
+        assert parts.length > 0;
         String name = null;
         Boolean isDone = null;
         for (int i = 1; i < parts.length; i++) {
@@ -54,6 +55,8 @@ public class TaskFactory {
     }
 
     private static DeadlineTask deserializeDeadlineTask(String[] parts) {
+        assert parts != null;
+        assert parts.length > 0;
         String name = null;
         Boolean isDone = null;
         String deadline = null;
@@ -89,6 +92,8 @@ public class TaskFactory {
     }
 
     private static EventTask deserializeEventTask(String[] parts) {
+        assert parts != null;
+        assert parts.length > 0;
         String name = null;
         Boolean isDone = null;
         String fromDate = null;

@@ -21,6 +21,8 @@ public class EventCommand extends Command {
      * @throws CommandTurtleException If command syntax is malformed.
      */
     public EventCommand(String[] sections, String correctSyntax) throws CommandTurtleException {
+        assert sections != null;
+        assert correctSyntax != null;
         int fromSectionIdx = Arrays.asList(sections).indexOf("/from");
         int toSectionIdx = Arrays.asList(sections).indexOf("/to");
         if (fromSectionIdx == -1) {
@@ -66,6 +68,7 @@ public class EventCommand extends Command {
      */
     @Override
     public void executeCommand(Chatbot bot) {
+        assert bot != null;
         bot.addTask(task);
     }
 

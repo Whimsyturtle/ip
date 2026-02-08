@@ -20,6 +20,7 @@ public class Storage {
      * @param path Path of storage file.
      */
     public Storage(Path path) {
+        assert path != null;
         this.path = path;
     }
 
@@ -30,6 +31,7 @@ public class Storage {
      * @throws IOException If an I/O exception occurs.
      */
     public void saveTasksToFile(TaskList taskList) throws IOException {
+        assert taskList != null;
         FileWriter fw = new FileWriter(this.path.toFile());
         for (int i = 0; i < taskList.size(); i++) {
             fw.write(taskList.get(i).serialize() + "\n");

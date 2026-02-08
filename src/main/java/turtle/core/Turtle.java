@@ -25,6 +25,7 @@ public class Turtle extends Application {
      */
     @Override
     public void start(Stage stage) {
+        assert stage != null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Turtle.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();

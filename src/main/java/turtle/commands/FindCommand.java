@@ -18,6 +18,8 @@ public class FindCommand extends Command {
      * @throws CommandTurtleException If command syntax is malformed.
      */
     public FindCommand(String[] sections, String correctSyntax) throws CommandTurtleException {
+        assert sections != null;
+        assert correctSyntax != null;
         if (sections.length == 1) {
             throw new CommandTurtleException("Invalid syntax", correctSyntax);
         }
@@ -31,6 +33,8 @@ public class FindCommand extends Command {
      */
     @Override
     public void executeCommand(Chatbot bot) {
+        assert bot != null;
         bot.find(searchStr);
     }
+
 }

@@ -12,6 +12,7 @@ public class ListCommand extends Command {
      */
     @Override
     public void executeCommand(Chatbot bot) {
+        assert bot != null;
         bot.list();
     }
 

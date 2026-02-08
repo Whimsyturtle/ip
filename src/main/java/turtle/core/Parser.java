@@ -25,7 +25,9 @@ public class Parser {
      * @throws TurtleException If command syntax is malformed.
      */
     public Command parseCommand(String userCommand) throws TurtleException {
+        assert userCommand != null;
         String[] sections = userCommand.split(" ");
+        assert sections.length > 0;
         return switch (sections[0]) {
             case "bye" -> new ByeCommand();
             case "list" -> new ListCommand();
