@@ -28,8 +28,6 @@ public class Chatbot {
      * @param storagePath Path of storage file.
      */
     public Chatbot(Path storagePath) {
-        // this.ui = new Ui(System.out, System.in);
-
         // The following section of code is adapted from:
         // https://stackoverflow.com/questions/1207281/java-how-do-i-read-from-printstream
         this.baos = new ByteArrayOutputStream();

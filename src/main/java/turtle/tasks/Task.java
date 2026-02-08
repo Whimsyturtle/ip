@@ -1,7 +1,7 @@
 package turtle.tasks;
 
 /** Task represents a named item which can be marked as done. */
-public class Task {
+public abstract class Task {
 
     protected final String name;
     protected boolean isDone;
