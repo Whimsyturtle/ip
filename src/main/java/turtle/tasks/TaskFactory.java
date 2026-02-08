@@ -18,15 +18,12 @@ public class TaskFactory {
             throw new IllegalStateException("Unable to deserialize Task: can't determine type");
         }
         String taskType = parts[0];
-        if (taskType.equals("todo")) {
-            return deserializeTodoTask(parts);
-        } else if (taskType.equals("deadline")) {
-            return deserializeDeadlineTask(parts);
-        } else if (taskType.equals("event")) {
-            return deserializeEventTask(parts);
-        } else {
-            throw new IllegalStateException("Unable to deserialize Task: unknown type " + taskType);
-        }
+        return switch (taskType) {
+            case "todo" -> deserializeTodoTask(parts);
+            case "deadline" -> deserializeDeadlineTask(parts);
+            case "event" -> deserializeEventTask(parts);
+            default -> throw new IllegalStateException("Unable to deserialize Task: unknown type " + taskType);
+        };
     }
 
     private static Task deserializeTodoTask(String[] parts) {
