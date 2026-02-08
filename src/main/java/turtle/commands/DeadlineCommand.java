@@ -33,7 +33,7 @@ public class DeadlineCommand extends Command {
         }
         String taskName = String.join(" ", Arrays.copyOfRange(sections, 1, bySectionIdx));
         String taskDeadline = String.join(" ", Arrays.copyOfRange(sections, bySectionIdx + 1, sections.length));
-        LocalDate parsedTaskDeadline = null;
+        LocalDate parsedTaskDeadline;
         try {
             parsedTaskDeadline = LocalDate.parse(taskDeadline);
         } catch (DateTimeParseException e) {

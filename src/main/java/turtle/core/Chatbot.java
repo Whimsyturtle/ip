@@ -36,7 +36,7 @@ public class Chatbot {
 
         this.storage = new Storage(storagePath);
 
-        TaskList tmpTaskList = null;
+        TaskList tmpTaskList;
         try {
             tmpTaskList = this.storage.loadTasksFromFile();
         } catch (IOException e) {
