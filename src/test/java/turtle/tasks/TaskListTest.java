@@ -23,7 +23,7 @@ public class TaskListTest {
     public void get_nonEmptyListInvalidIndex_exceptionThrown() {
         TaskList tl = new TaskList();
         for (int i = 0; i < 5; i++) {
-            tl.add(new Task("Task" + i));
+            tl.add(new TodoTask("Task" + i));
         }
         try {
             tl.get(6);
@@ -38,7 +38,7 @@ public class TaskListTest {
         TaskList tl = new TaskList();
         Task[] tasks = new Task[5];
         for (int i = 0; i < 5; i++) {
-            tasks[i] = new Task("Task" + i);
+            tasks[i] = new TodoTask("Task" + i);
             tl.add(tasks[i]);
         }
         for (int i = 0; i < 5; i++) {
@@ -61,7 +61,7 @@ public class TaskListTest {
     public void remove_nonEmptyListInvalidIndex_exceptionThrown() {
         TaskList tl = new TaskList();
         for (int i = 0; i < 5; i++) {
-            tl.add(new Task("Task" + i));
+            tl.add(new TodoTask("Task" + i));
         }
         try {
             tl.remove(6);
@@ -76,7 +76,7 @@ public class TaskListTest {
         TaskList tl = new TaskList();
         Task[] tasks = new Task[5];
         for (int i = 0; i < 5; i++) {
-            tasks[i] = new Task("Task" + i);
+            tasks[i] = new TodoTask("Task" + i);
             tl.add(tasks[i]);
         }
         tl.remove(0); // Remove Task0, i.e. tl = [Task1, Task2, Task3, Task4]
@@ -96,7 +96,7 @@ public class TaskListTest {
     public void size_addFiveAndRemoveThree_twoReturned() {
         TaskList tl = new TaskList();
         for (int i = 0; i < 5; i++) {
-            tl.add(new Task("Task" + i));
+            tl.add(new TodoTask("Task" + i));
         }
         for (int i = 0; i < 3; i++) {
             tl.remove(0);
