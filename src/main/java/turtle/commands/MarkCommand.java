@@ -41,4 +41,9 @@ public class MarkCommand extends Command {
         bot.mark(this.index);
     }
 
+    @Override
+    public String toString() {
+        return "MarkCommand{index=" + this.index + "}";
+    }
+
 }

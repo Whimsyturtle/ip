@@ -39,4 +39,9 @@ public class TodoCommand extends Command {
         bot.addTask(task);
     }
 
+    @Override
+    public String toString() {
+        return "TodoCommand{task=" + this.task + "}";
+    }
+
 }

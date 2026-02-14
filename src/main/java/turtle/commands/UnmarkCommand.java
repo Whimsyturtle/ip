@@ -41,4 +41,9 @@ public class UnmarkCommand extends Command {
         bot.unmark(this.index);
     }
 
+    @Override
+    public String toString() {
+        return "UnmarkCommand{index=" + this.index + "}";
+    }
+
 }

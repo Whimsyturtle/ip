@@ -55,4 +55,9 @@ public class DeadlineCommand extends Command {
         bot.addTask(task);
     }
 
+    @Override
+    public String toString() {
+        return "DeadlineCommand{task=" + this.task + "}";
+    }
+
 }

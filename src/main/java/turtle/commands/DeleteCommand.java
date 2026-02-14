@@ -41,4 +41,9 @@ public class DeleteCommand extends Command {
         bot.delete(this.index);
     }
 
+    @Override
+    public String toString() {
+        return "DeleteCommand{index=" + this.index + "}";
+    }
+
 }

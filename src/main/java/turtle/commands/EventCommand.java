@@ -72,4 +72,9 @@ public class EventCommand extends Command {
         bot.addTask(task);
     }
 
+    @Override
+    public String toString() {
+        return "EventCommand{task=" + this.task + "}";
+    }
+
 }

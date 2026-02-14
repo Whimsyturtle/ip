@@ -18,4 +18,9 @@ public class ByeCommand extends Command {
         throw new ByeTurtleException();
     }
 
+    @Override
+    public String toString() {
+        return "ByeCommand{}";
+    }
+
 }

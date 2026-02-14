@@ -44,4 +44,9 @@ public class ListCommand extends Command {
         bot.list(this.shouldSort);
     }
 
+    @Override
+    public String toString() {
+        return "ListCommand{shouldSort=" + this.shouldSort + "}";
+    }
+
 }

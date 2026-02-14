@@ -37,4 +37,9 @@ public class FindCommand extends Command {
         bot.find(searchStr);
     }
 
+    @Override
+    public String toString() {
+        return "FindCommand{searchStr='" + this.searchStr + "'}";
+    }
+
 }

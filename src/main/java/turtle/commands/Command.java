@@ -14,4 +14,11 @@ public abstract class Command {
      */
     public abstract void executeCommand(Chatbot bot) throws TurtleException;
 
+    /**
+     * Returns a machine-readable representation of the Command.
+     *
+     * @return Machine-readable representation of the command.
+     */
+    public abstract String toString();
+
 }
