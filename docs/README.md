@@ -1,30 +1,103 @@
-# Duke User Guide
+# Turtle User Guide
 
-// Update the title above to match the actual product name
+Turtle is a JavaFX task management chatbot.
+It helps you keep track of todos, deadlines, and events using simple text-based commands.
 
-// Product screenshot goes here
+![Turtle UI](Ui.png)
 
-// Product intro goes here
+## Quick Start
 
-## Adding deadlines
+1. Launch the app.
+2. Type a command in the input box.
+3. Press Enter to execute.
 
-// Describe the action and its outcome.
+## Command List
 
-// Give examples of usage
+- `todo <task_name>`
+- `deadline <task_name> /by <deadline>`
+- `event <task_name> /from <from_date> /to <to_date>`
+- `list [sort]`
+- `mark <index>`
+- `unmark <index>`
+- `delete <index>`
+- `find <search_str>`
+- `bye`
 
-Example: `keyword (optional arguments)`
+**Remarks**
+> - `<...>` indicates a mandatory field, while `[...]` indicates an optional field.
+> - Date fields (e.g. `<deadline>`, `<from_date>`, `<to_date>`) must use `yyyy-mm-dd` format (e.g. `2026-02-14`).
+> - Task indexes are 1-based, matching the indexing shown by `list`.
 
-// A description of the expected outcome goes here
+## Features
 
-```
-expected output
-```
+### Add Todo
 
-## Feature ABC
+Adds a todo task.
 
-// Feature details
+Syntax: `todo <task_name>`
 
+Example: `todo read book`
 
-## Feature XYZ
+### Add Deadline
 
-// Feature details
+Adds a deadline task.
+
+Syntax: `deadline <task_name> /by <deadline>`
+
+Example: `deadline submit iP /by 2026-02-20`
+
+### Add Event
+
+Adds an event task with start and end dates.
+
+Syntax: `event <task_name> /from <from_date> /to <to_date>`
+
+Example: `event hackathon /from 2026-03-01 /to 2026-03-03`
+
+### List Tasks
+
+Shows all tasks.
+
+Syntax: `list [sort]`
+
+Use `list` to show tasks by creation order.
+
+Use `list sort` to show tasks by completion status (incomplete first), then by name.
+
+### Mark Task
+
+Marks a task as done.
+
+Syntax: `mark <index>`
+
+Example: `mark 2`
+
+### Unmark Task
+
+Marks a task as not done.
+
+Syntax: `unmark <index>`
+
+Example: `unmark 2`
+
+### Delete Task
+
+Deletes a task.
+
+Syntax: `delete <index>`
+
+Example: `delete 3`
+
+### Find Tasks
+
+Finds tasks that contain the given search text.
+
+Syntax: `find <search_str>`
+
+Example: `find submit`
+
+### Exit
+
+Closes Turtle.
+
+Syntax: `bye`
